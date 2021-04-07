@@ -9,8 +9,6 @@ import AddTask from '../components/AddTask.jsx';
 
 class CalendarPage extends React.Component {
 
-
-
     render() {
         return (
             <div className="CalendarPage">
