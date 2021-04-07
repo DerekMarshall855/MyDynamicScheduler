@@ -213,11 +213,11 @@ main {
 }
 
 /* Login form */
-.login-container{
+.Login {
     border: 1px solid #f1f1f1;
     border-radius: 25px;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-    padding: 35px 60px;
+    padding: 35px 50px;
     text-align: center;
     background-color: #d6e6f2;
     margin: 100px auto;
@@ -225,25 +225,25 @@ main {
     width: 400px;
 }
 
-.signin-title{
+.Login h1{
     padding: 20px;
     color: #769fcd;
     font-weight: bold;
     font-size: 23px;
 }
 
-form.login-form{
-    padding-top: 30px;
+.Login form{
+    padding-bottom: 30px;
 }
 
-.username-text{
+.Login label{
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.5px;
     color: #555555;
 }
 
-#username1{
+.Login input[type=text]{
     border: 1px solid #ccc;
     box-sizing: border-box;
     border-radius: 20px;
@@ -253,37 +253,29 @@ form.login-form{
     
 }
 
-.password-text{
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    color: #555555;
-}
-#password{
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 20px;
-    outline: none;
-    padding: 10px;
-    margin: 10px 5px;
+.Login input[type=checkbox]{
+  width: 15px; 
+  height: 15px;
+  margin: 10px 5px;
 }
 
-.remember-me {
-    font-size: 15px;
-    margin-top: 15px;
+.Login button{
+  cursor: pointer;
+  border: 0;
+  border-radius: 5em;
+  outline-width: thin;
+  outline-color: #555555;;
+  color: #fff;
+  background: linear-gradient(to right,#769fcd,#88b5e9);
+  padding: 10px 20px;
+  margin: 25px 0px;
+  font-size: 16px;
 }
-
-.login-button{
-    cursor: pointer;
-    border: 0;
-    border-radius: 5em;
-    outline-width: thin;
-    outline-color: #555555;;
-    color: #fff;
-    background: linear-gradient(to right,#769fcd,#88b5e9);
-    padding: 10px 40px;
-    margin: 50px 140px;
-    font-size: 16px;
+.Login p{
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #555555;
 }
 
 
