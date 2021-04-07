@@ -1,6 +1,4 @@
 import React from "react";
-import NavBar from '../components/NavBar.js';
-import Header from '../components/Header.js';
 
 import { subMonths, addMonths, isSameMonth, startOfWeek, endOfWeek, addDays, format, startOfMonth, endOfMonth, isSameDay} from "date-fns";
 
