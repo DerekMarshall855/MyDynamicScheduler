@@ -3,7 +3,7 @@
 <head>
     <title>MyDynamicSchedule</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- <script src="jquery-3.5.1.js"></script> -->
+    <script src="jquery-3.5.1.js"></script>
     <script>
         function setCookie(cname, cvalue, exdays) {
             var d = new Date();
@@ -69,14 +69,12 @@
                 }
             }).done(function(result) {
                 $("#divCustomerInfo").html(result);
-                $("#divBookSearch").load("bookshelf.html");
-                $("#divSearchInfo").load("search_users.html");
             });
         }
     </script>
     <script type="text/javascript">
         function sendRequest() {
-            var oForm = document.forms[1];
+            var oForm = document.forms[0];
             var sBody = getRequestBody(oForm);
             var xhttp = new XMLHttpRequest();
             xhttp.open("post", oForm.action, true);
@@ -119,7 +117,7 @@
     <div class="login-container">
         <p class="signin-title">SIGN IN</p>
         <form class="login-form" action="index.html" method="post" onsubmit="sendRequest(); return false">
-            <table> 
+            <table>
                 <tbody>
                     <tr>
                         <td class="username-text">Username: </td>
@@ -132,12 +130,12 @@
                     </tr>
                     <tr>
                         <td><input size="50" type="text" id="password"> </td>
-                    </tr>                    
+                    </tr>
                     <tr>
                         <td>
                             <p class="remember-me">
-                            <input value="Remember" type="checkbox" id="remember">
-                            <label for="remember">Remember Me</label>
+                                <input value="Remember" type="checkbox" id="remember">
+                                <label for="remember">Remember Me</label>
                             </p>
                         </td>
                     </tr>
