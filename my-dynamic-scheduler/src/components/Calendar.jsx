@@ -1,10 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-import NavBar from '../components/NavBar.js';
-import Header from '../components/Header.js';
-=======
-import './styles.css';
->>>>>>> 34fb842051717ba49e294331e25aaf06ea02105e
 import { subMonths, addMonths, isSameMonth, startOfWeek, endOfWeek, addDays, format, startOfMonth, endOfMonth, isSameDay} from "date-fns";
 
 class Calendar extends React.Component {
