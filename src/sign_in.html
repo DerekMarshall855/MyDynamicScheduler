@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <title>MyDynamicSchedule</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- <script src="jquery-3.5.1.js"></script> -->
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    if (cname.localeCompare('password') == 0 || cname.localeCompare('username1') == 0) { // For username and password
+                        document.getElementById(cname).value = c.substring(name.length, c.length);
+                    } else { // For checkbox status
+                        if (cname) {
+                            document.getElementById(cname).checked = true;
+                        } else {
+                            document.getElementById(cname).checked = false;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        function delCookie(cname) {
+            var d = new Date();
+            d.setTime(d.getTime() + (0 * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "= ;" + expires + ";path=/";
+        }
+    </script>
+    <script>
+        function requestCustomerInfo() {
+            if (document.getElementById('remember').checked) {
+                var username = $('#username1').val();
+                var password = $('#password').val();
+                // set cookies to expire in 14 days
+                setCookie('username1', username, 14);
+                setCookie('password', password, 14);
+                setCookie('remember', true, 14);
+            } else {
+                delCookie('username1');
+                delCookie('password');
+                delCookie('remember');
+            }
+            var username = $('#username1').val();
+            var password = $('#password').val();
+
+            $.ajax({
+                type: "POST",
+                url: "user_login.php",
+                data: {
+                    user: username,
+                    pass: password
+                }
+            }).done(function(result) {
+                $("#divCustomerInfo").html(result);
+                $("#divBookSearch").load("bookshelf.html");
+                $("#divSearchInfo").load("search_users.html");
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function sendRequest() {
+            var oForm = document.forms[1];
+            var sBody = getRequestBody(oForm);
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("post", oForm.action, true);
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        saveResult(xhttp.responseText);
+                    } else {
+                        saveResult("An error occurred: " + xhttp.statusText);
+                    }
+                }
+            };
+            xhttp.send(sBody);
+        }
+
+        function getRequestBody(oForm) {
+            var aParams = new Array();
+            for (var i = 0; i < oForm.elements.length; i++) {
+                var sParam = encodeURIComponent(oForm.elements[i].name);
+                sParam += "=";
+                sParam += encodeURIComponent(oForm.elements[i].value);
+                aParams.push(sParam);
+            }
+            return aParams.join("&");
+        }
+
+        function saveResult(sMessage) {
+            var divStatus = document.getElementById("divStatus");
+            divStatus.innerHTML = "Request completed: " + sMessage;
+        }
+    </script>
+</head>
+
+<body onload="getCookie('username1'); getCookie('password'); getCookie('remember');">
+    <div class="top-container">
+        <h1 class="name">MyDynamicSchedule</h1>
+        <hr>
+    </div>
+    <div class="login-container">
+        <p class="signin-title">SIGN IN</p>
+        <form class="login-form" action="index.html" method="post" onsubmit="sendRequest(); return false">
+            <table> 
+                <tbody>
+                    <tr>
+                        <td class="username-text">Username: </td>
+                    </tr>
+                    <tr>
+                        <td><input size="50" type="text" id="username1"> </td>
+                    </tr>
+                    <tr>
+                        <td class="password-text">Password: </td>
+                    </tr>
+                    <tr>
+                        <td><input size="50" type="text" id="password"> </td>
+                    </tr>                    
+                    <tr>
+                        <td>
+                            <p class="remember-me">
+                            <input value="Remember" type="checkbox" id="remember">
+                            <label for="remember">Remember Me</label>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input class="login-button" value="Login" type="button" onclick="requestCustomerInfo()" /></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="divCustomerInfo"></div>
+</body>
+
+</html>
