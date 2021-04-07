@@ -3,6 +3,8 @@ import NavBar from '../components/NavBar.jsx';
 import Header from '../components/Header.jsx';
 import Calendar from '../components/Calendar.jsx';
 import AddEvent from '../components/AddEvent.jsx';
+import AddTask from '../components/AddTask.jsx';
+
 
 
 class CalendarPage extends React.Component {
@@ -15,6 +17,7 @@ class CalendarPage extends React.Component {
                 <Header />
                 <NavBar />
                 <AddEvent />
+                <AddTask />
                 <Calendar />
             </div>
         );
