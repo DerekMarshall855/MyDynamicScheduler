@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+    <script type = "text/javascript">
+
+        function sendRequest() {
+            var oForm = document.forms[0];
+            var body = getRequestBody(oForm);
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("post", oForm.action, true);
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4) {
+                    if (xhttp.status == 200) {
+                        saveResult(xhttp.responseText);
+                    } else {
+                        saveResult("An error occurred: " + xhttp.statusText);
+                    }
+                }
+            };
+            xhttp.send(body);
+        }
+
+        function getRequestBody(oForm) {
+            var aParams = new Array();
+            for (var i = 0; i < oForm.elements.length; i++) {
+                var sParam = encodeURIComponent(form.elements[i].name);
+                sParam += "=";
+                sParam += encodeURIComponent(form.elements[i].value);
+                aParams.push(sParam);
+            }
+            return aParams.join("&");
+        }
+
+        function saveResult(sMessage) {
+            var divStatus = document.getElementById("divStatus");
+            divStatus.innerHTML = "Request completed: " + sMessage;
+        }
+
+    </script>
+</head>  
+
+<body>
+    <form method = "POST" action = "add_user.php" onsubmit="sendRequest(); return false">
+        <p>Create Account</p>
+        <table>
+            <tr>
+                <td>Username: </td>
+                <td><input type = "text" name = "uname" value = "" size = "50"/></td>
+            </tr>
+            <tr>
+                <td>Password: </td>
+                <td><input type = "text" name = "upassword" value =  "" size = "50"/></td>
+            </tr>
+        </table>
+
+        <p><input type = "submit" value = "Create Account"/></p>
+    </form>
+    <div id = "divStatus"></div>
+</body>
+</html>
