@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import CalendarPage from '../pages/CalendarPage';
+import ScheduleGenerator from '../pages/ScheduleGenerator';
 import Logout from '../pages/Logout';
 
 
@@ -16,6 +17,7 @@ const Main = () => {
             <Route exact path='/signup' component={Signup}></Route>
             <Route exact path='/calendar' component={CalendarPage}></Route>
             <Route exact path='/logout' component={Logout}></Route>
+            <Route exact path='/generate-schedule' component={ScheduleGenerator}></Route>
         </Switch>
     );
 }
