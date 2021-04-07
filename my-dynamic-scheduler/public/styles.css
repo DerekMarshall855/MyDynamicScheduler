@@ -291,6 +291,7 @@ form.login-form{
 .topnav {
   position: relative;
   background-color: white;
+  text-align: center;
 }
 
 .topnav li {
