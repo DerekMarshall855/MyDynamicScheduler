@@ -1,5 +1,7 @@
 import React from "react";
 import './styles.css';
+import NavBar from '../components/NavBar.js';
+import Header from '../components/Header.js';
 import { subMonths, addMonths, isSameMonth, startOfWeek, endOfWeek, addDays, format, startOfMonth, endOfMonth, isSameDay} from "date-fns";
 
 class Calendar extends React.Component {
@@ -102,20 +104,8 @@ class Calendar extends React.Component {
     render() {
         return (
           <div className="calendar">
-            <div className="top-container">
-                <header>
-                <h1 className="name">MyDynamicScheduler</h1>
-                <hr></hr>
-                </header>
-            </div>
-
-            <div className="topnav">
-             <ul>
-                <li><a href="index.html">Calendar</a></li>
-                <li><a href="">Schedule</a></li>
-                <li><a href="#about">About</a></li>
-              </ul>
-            </div>
+            <Header />
+            <NavBar />
             
             {this.renderHeader()}
             {this.renderDays()}

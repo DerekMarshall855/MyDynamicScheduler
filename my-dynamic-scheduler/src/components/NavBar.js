@@ -1,0 +1,16 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+const NavBar = () => {
+    return (
+        <div className="topnav">
+        <ul>
+            <li><NavLink to="home">Home Page</NavLink></li>
+            <li><NavLink to="calendar">Calendar</NavLink></li>
+            <li><NavLink to="logout">Log Out</NavLink></li>
+         </ul>
+       </div>
+    );
+}
+
+export default NavBar;

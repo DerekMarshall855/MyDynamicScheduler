@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class Login extends React.Component {
+class Signup extends React.Component {
 
     constructor(props) {
         super(props);
@@ -28,24 +28,17 @@ class Login extends React.Component {
         //If not, output "bad user/pass to div"
     }
 
-    handleSignUp = (e) => {
-        e.preventDefault();
-        this.props.history.push('/signup');
-    }
-
     render() {
         return (
             <div className="Login">
-                <h1>Login Page</h1>
+                <h1>Sign Up Page</h1>
                 <form onSubmit={this.handleFormSubmit}>
                     <label>Username</label>
                     <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
                     <label>Password</label>
                     <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-                    <input type="submit" value="Log In"/>
+                    <input type="submit" value="Sign Up"/>
                 </form>
-
-                <button type="button" onClick={this.handleSignUp}>Sign Up!</button>
 
                 <div id="successful"></div>
             </div>
@@ -53,4 +46,4 @@ class Login extends React.Component {
     }
 }
 
-export default withRouter(Login);
+export default withRouter(Signup);
