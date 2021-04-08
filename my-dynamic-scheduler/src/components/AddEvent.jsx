@@ -1,8 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import {TimePickerComponent} from "@syncfusion/ej2-react-calendars";
+
 class AddEvent extends React.Component {
    
     constructor(props) {
@@ -20,12 +18,13 @@ class AddEvent extends React.Component {
         this.setState({event: e.target.value});
     }
 
-    handleDateChange = date => {  
-        this.setState({date: date});
+    handleDateChange = (e) => {  
+        e.preventDefault();
+        this.setState({date: e.target.value});
     }
-    handleTimeChange = time => {
-        
-        this.setState({time: time});
+    handleTimeChange = (e) => {
+        e.preventDefault();
+        this.setState({time: e.target.value});
     }
 
     handleDurationChange = (e) => {
@@ -51,18 +50,11 @@ class AddEvent extends React.Component {
                         </tr>
                         <tr>
                             <td><label>Date: </label></td>
-                            <td>
-                                <DatePicker selected = {this.state.date} onChange= {this.handleDateChange}>
-
-                                </DatePicker>
-                            </td>
+                            <td><input type= "date" value = {this.state.date} onChange={this.handleDateChange} /> </td>
                         </tr>
                         <tr>
                             <td><label>Time: </label></td>
-                            <td>
-                                <TimePickerComponent selected = {this.state.time} onChange={this.handleTimeChange}>
-                                </TimePickerComponent>
-                            </td>
+                            <td><input type= "time" value = {this.state.time} onChange={this.handleTimeChange} /></td>
                         </tr>
                         <tr>
                             <td><label>Duration: </label></td>
