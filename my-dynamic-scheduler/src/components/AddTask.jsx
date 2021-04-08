@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class AddTask extends React.Component {
     constructor(props) {
@@ -17,9 +19,8 @@ class AddTask extends React.Component {
         this.setState({task: e.target.value});
     }
 
-    handleDueDateChange = (e) => {
-        e.preventDefault();
-        this.setState({due_date: e.target.value});
+    handleDueDateChange = date => {
+        this.setState({due_date: date});
     }
 
     handleDifficultyChange = (e) => {
@@ -48,8 +49,12 @@ class AddTask extends React.Component {
                             <td><input type="text" value={this.state.task} onChange={this.handleTaskChange} /></td>
                         </tr>
                         <tr>
-                            <td><label>Due Date (DD-MM-YYYY): </label></td>
-                            <td><input type="text" value={this.state.due_date} onChange={this.handleDueDateChange} /></td>
+                            <td><label>Due Date: </label></td>
+                            <td>
+                                <DatePicker selected = {this.state.due_date} onChange= {this.handleDueDateChange}>
+
+                                </DatePicker>
+                            </td>
                         </tr>
                         <tr>
                             <td><label>Difficulty: </label></td>

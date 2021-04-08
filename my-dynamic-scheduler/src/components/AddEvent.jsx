@@ -1,5 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/entry.nostyle';
 class AddEvent extends React.Component {
    
     constructor(props) {
@@ -17,13 +21,12 @@ class AddEvent extends React.Component {
         this.setState({event: e.target.value});
     }
 
-    handleDateChange = (e) => {
-        e.preventDefault();
-        this.setState({date: e.target.value});
+    handleDateChange = date => {  
+        this.setState({date: date});
     }
-    handleTimeChange = (e) => {
-        e.preventDefault();
-        this.setState({time: e.target.value});
+    handleTimeChange = time => {
+        
+        this.setState({time: time});
     }
 
     handleDurationChange = (e) => {
@@ -48,12 +51,19 @@ class AddEvent extends React.Component {
                             <td><input type="text" value={this.state.event} onChange={this.handleEventChange} /></td>
                         </tr>
                         <tr>
-                            <td><label>Date (DD-MM-YYYY): </label></td>
-                            <td><input type="text" value={this.state.date} onChange={this.handleDateChange} /></td>
+                            <td><label>Date: </label></td>
+                            <td>
+                                <DatePicker selected = {this.state.date} onChange= {this.handleDateChange}>
+
+                                </DatePicker>
+                            </td>
                         </tr>
                         <tr>
                             <td><label>Time: </label></td>
-                            <td><input type="text" value = {this.state.time} onChange={this.handleTimeChange} /></td>
+                            <td>
+                                <TimePicker selected = {this.state.time} onChange={this.handleTimeChange}>
+                                </TimePicker>
+                            </td>
                         </tr>
                         <tr>
                             <td><label>Duration: </label></td>
