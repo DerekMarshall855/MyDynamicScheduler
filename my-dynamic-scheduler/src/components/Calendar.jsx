@@ -39,6 +39,7 @@ class Calendar extends React.Component {
         }
         return <div className="days row">{days}</div>;
     }
+    
     renderCells(){
         const { currentMonth, selectedDate } = this.state;
 

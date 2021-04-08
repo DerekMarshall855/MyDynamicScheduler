@@ -16,9 +16,11 @@ class Logout extends React.Component {
             <div className="Logout">
                 <Header />
                 <NavBar />
-                <h1>Logout Page</h1>
-                <p>Are you sure you would like to logout?</p>
-                <button onClick={this.handleLogout}>YES</button>
+                <div className="Logout-container">
+                    <h1>Logout</h1>
+                    <p>Are you sure you would like to logout?</p>
+                    <button onClick={this.handleLogout}>YES</button>
+                </div>
             </div>
         );
     }

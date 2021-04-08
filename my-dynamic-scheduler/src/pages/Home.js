@@ -12,6 +12,10 @@ class Home extends React.Component {
             <div className="Home">
                 <Header />
                 <NavBar />
+                <div className="Home-container">
+                    <h1>Welcome to MyDynamicScheduler!</h1>
+
+                </div>
             </div>
         );
     }

@@ -48,12 +48,12 @@ class LoginForm extends React.Component{
                             <td><label>Password: </label></td>
                             <td><input type="text" value={this.state.password} onChange={this.handlePasswordChange} /></td>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox" value="Remember"/></td>
-                            <td><label>Remember Me</label></td>
-                        </tr>
                     </tbody>
                 </table>
+                <div>
+                   <input type="checkbox" value="Remember"/>
+                    <label>Remember Me</label> 
+                </div>
                 <button type="submit" value="Log In">Login</button>
             </form>
             <p>Don't have an account? Sign up here!</p>

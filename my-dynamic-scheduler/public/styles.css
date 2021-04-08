@@ -3,6 +3,85 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
+/* VARIABLES */
+
+:root {
+  --main-color: #769fcd;
+  --main2-color: #b9d7ea;
+  --main3-color:   #d6e6f2; 
+  --main4-color: #f7fbfc;
+  --text-color: #777;
+  --text-color-light: #ccc;
+  --border-color: #eee;
+  --cell-color: #f9f9f9;
+  --neutral-color: #fff;
+}
+
+/* GENERAL */
+
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-color);
+  background: var(--neutral-color);
+}
+
+button{
+cursor: pointer;
+border: 0;
+border-radius: 5em;
+outline-width: thin;
+outline-color: #555555;;
+color: #fff;
+background: linear-gradient(to right,#769fcd,#88b5e9);
+padding: 10px 20px;
+margin: 25px 0px;
+font-size: 16px;
+}
+
+hr {
+  border-top: rgb(73, 73, 73);
+  width: 90%;
+}
+
+
+/*Website Name*/
+.name {
+  margin: 30px 30px;
+  color: var(--main-color);
+  font-family: 'Arial Narrow', sans-serif;
+}
+
+/* The navbar container */
+.topnav {
+  position: relative;
+  background-color: white;
+  text-align: center;
+}
+
+.topnav li {
+  display: inline-block;
+  background-color: white;
+  
+}
+
+/* Navbar links */
+.topnav a {
+display: block;
+color: black;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+/* Links - change color on hover */
+.topnav a:hover {
+background-color: #b9d7ea;
+color: black;
+} 
+
 .icon {
   font-family: 'Material Icons', serif;
   font-style: normal;
@@ -22,59 +101,14 @@
 }
 
 
-/* VARIABLES */
+/*Home page*/
 
-:root {
-  --main-color: #769fcd;
-  --text-color: #777;
-  --text-color-light: #ccc;
-  --border-color: #eee;
-  --bg-color: #f9f9f9;
-  --neutral-color: #fff;
+.Home-container {
+  background-color: var(--main4-color);
 }
 
 
-/* GENERAL */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-    font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-size: 1em;
-    font-weight: 300;
-    line-height: 1.5;
-    color: var(--text-color);
-    background: var(--bg-color);
-    position: relative;
-}
-
-.header {
-  background-color: #f7fbfc;
-  /* text-align: center; */
-  padding: 20px;
-}
-/*Website Name*/
-hr {
-  border-top: 30px rgb(73, 73, 73);
-  width: 90%;
-}
-.name{
-  margin: 30px 30px;
-  color:#769fcd;
-  font-family: 'Arial Narrow', sans-serif;
-}
-
-main {
-  display: block;
-  margin: 0 auto;
-  margin-top: 5em;
-  max-width: 50em;
-}
-
-
-/* GRID */
+/* Calendar GRID */
 
 .row {
   margin: 0;
@@ -128,6 +162,7 @@ main {
   padding: 1.5em 0;
   border-bottom: 1px solid var(--border-color);
   color: var(--main-color);
+  background-color: #f7fbfc;
 }
 
 .calendar .header .icon {
@@ -152,7 +187,7 @@ main {
 .calendar .days {
   text-transform: uppercase;
   font-weight: 600;
-  color:  #b9d7ea;
+  color: var(--main2-color);
   font-size: 70%;
   padding: .75em 0;
   border-bottom: 1px solid var(--border-color);
@@ -166,10 +201,11 @@ main {
   cursor: pointer;
   background: var(--neutral-color);
   transition: 0.25s ease-out;
+  box-sizing: border-box;
 }
 
 .calendar .body .cell:hover {
-  background: var(--bg-color);
+  background: var(--cell-color);
   transition: 0.5s ease-out;
 }
 
@@ -214,20 +250,20 @@ main {
 
 /* Login form */
 .Login {
-    border: 1px solid #f1f1f1;
-    border-radius: 25px;
-    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-    padding: 35px 50px;
-    text-align: center;
-    background-color: #d6e6f2;
-    margin: 100px auto;
-    font-family:'Gill Sans', sans-serif;
-    width: 400px;
+  border: 1px solid #f1f1f1;
+  border-radius: 25px;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+  padding: 35px 50px;
+  text-align: center;
+  background-color: var(--main3-color);
+  margin: 100px auto;
+  font-family:'Gill Sans', sans-serif;
+  width: 400px;
 }
 
 .Login h1{
     padding: 20px;
-    color: #769fcd;
+    color: var(--main-color);
     font-weight: bold;
     font-size: 23px;
 }
@@ -235,12 +271,17 @@ main {
 .Login form{
     padding-bottom: 30px;
 }
+.Login table{
+  width: 80%;
+  margin: 0 50px;
+}
 
 .Login label{
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 0.5px;
     color: #555555;
+    text-align: end;
 }
 
 .Login input[type=text]{
@@ -249,7 +290,7 @@ main {
     border-radius: 20px;
     outline: none;
     padding: 10px;
-    margin: 10px 5px;
+    margin: 10px 0;
     
 }
 
@@ -278,31 +319,15 @@ main {
   color: #555555;
 }
 
+/*Schedule*/
+.ScheduleGenerator .body .row {
+  border-bottom: 1px solid var(--border-color);
+}
 
-/* The navbar container */
-.topnav {
-  position: relative;
-  background-color: white;
+/*Logout form*/
+
+.Logout-container{
   text-align: center;
+  background-color: var(--main4-color);
+  padding: 10px 200px 100px 200px;
 }
-
-.topnav li {
-  display: inline-block;
-  background-color: white;
-  
-}
-
-/* Navbar links */
-.topnav a {
-display: block;
-color: black;
-text-align: center;
-padding: 14px 16px;
-text-decoration: none;
-}
-
-/* Links - change color on hover */
-.topnav a:hover {
-background-color: #b9d7ea;
-color: black;
-} 

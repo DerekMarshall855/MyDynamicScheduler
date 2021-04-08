@@ -10,6 +10,7 @@ const NavBar = () => {
                 <li><NavLink to="generate-schedule">Generate Schedule</NavLink></li>
                 <li><NavLink to="logout">Log Out</NavLink></li>
             </ul>
+            <hr></hr>
        </div>
     );
 }
