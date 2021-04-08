@@ -2,8 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import TimePicker from 'react-time-picker';
-import 'react-time-picker/dist/entry.nostyle';
+import {TimePickerComponent} from "@syncfusion/ej2-react-calendars";
 class AddEvent extends React.Component {
    
     constructor(props) {
@@ -61,8 +60,8 @@ class AddEvent extends React.Component {
                         <tr>
                             <td><label>Time: </label></td>
                             <td>
-                                <TimePicker selected = {this.state.time} onChange={this.handleTimeChange}>
-                                </TimePicker>
+                                <TimePickerComponent selected = {this.state.time} onChange={this.handleTimeChange}>
+                                </TimePickerComponent>
                             </td>
                         </tr>
                         <tr>
