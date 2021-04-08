@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class AddTask extends React.Component {
     constructor(props) {
@@ -17,9 +19,8 @@ class AddTask extends React.Component {
         this.setState({task: e.target.value});
     }
 
-    handleDueDateChange = (e) => {
-        e.preventDefault();
-        this.setState({due_date: e.target.value});
+    handleDueDateChange = date => {
+        this.setState({due_date: date});
     }
 
     handleDifficultyChange = (e) => {
@@ -44,20 +45,44 @@ class AddTask extends React.Component {
                 <table>
                     <tbody>
                         <tr>
-                            <td><label>Task: </label></td>
+                            <td><label>Description of Task: </label></td>
                             <td><input type="text" value={this.state.task} onChange={this.handleTaskChange} /></td>
                         </tr>
                         <tr>
                             <td><label>Due Date: </label></td>
-                            <td><input type="text" value={this.state.due_date} onChange={this.handleDueDateChange} /></td>
+                            <td>
+                                <DatePicker selected = {this.state.due_date} onChange= {this.handleDueDateChange}>
+
+                                </DatePicker>
+                            </td>
                         </tr>
                         <tr>
                             <td><label>Difficulty: </label></td>
-                            <td><input type="text" value={this.state.difficulty} onChange={this.handleDifficultyChange} /></td>
+                            <td>
+                                <select value={this.state.difficulty} onChange={this.handleDifficultyChange} >
+                                    <option value = "easy">Easy</option>
+                                    <option value = "medium">Medium</option>
+                                    <option value = "hard">Hard</option>
+                                </select>
+                            </td>
+
                         </tr>
                         <tr>
                             <td><label>Duration: </label></td>
-                            <td><input type="text" value={this.state.duration} onChange={this.handleDurationChange} /></td>
+                            <td>
+                                <select value = {this.state.duration} onChange={this.handleDurationChange} >
+                                    <option value = "30">30 minutes</option>
+                                    <option value = "60">1 hour</option>
+                                    <option value = "90">1 hour 30 minutes</option>
+                                    <option value = "120">2 hours</option>
+                                    <option value = "150">2 hours 30 minutes</option>
+                                    <option value = "180">3 hours</option>
+                                    <option value = "210">3 hours 30 minutes</option>
+                                    <option value = "240">4 hours</option>
+                                    <option value = "270">4 hours 30 minutes</option>
+                                    <option value = "300">5 hours</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="checkbox" value="Recurring" /></td>
@@ -65,7 +90,7 @@ class AddTask extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                <button type="submit" value = "Add Task">addTask</button>
+                <button type="submit" value = "Add Task">Add Task</button>
             </form>
             <div id="successful"></div>
             </div>
