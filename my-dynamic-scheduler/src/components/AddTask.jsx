@@ -61,7 +61,7 @@ class AddTask extends React.Component {
                         </tr>
                         <tr>
                             <td><input type="checkbox" value="Recurring" /></td>
-                            <td><label>Recurring Event</label></td>
+                            <td><label>Recurring Task</label></td>
                         </tr>
                     </tbody>
                 </table>
