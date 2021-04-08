@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import sha1 from 'js-sha1';
+import api from '../api/user_api.js';
 
 class LoginForm extends React.Component{
 
@@ -21,11 +23,29 @@ class LoginForm extends React.Component{
         this.setState({password: e.target.value});
     }
 
-    handleFormSubmit = (e) => {
+    handleFormSubmit = async (e) => {
         e.preventDefault();
-        //Authenticate
-        this.props.history.push('/home'); //If authenticated
-        //If not, output "bad user/pass to div"
+
+        if(this.state.username.localeCompare('') !== 0 && this.state.password.localeCompare('') !== 0) {
+            //Create json object for API call
+            var obj = JSON.parse(`{"username":"${this.state.username}", "password":"${sha1(this.state.password)}"}`);
+            //Authenticate/login user
+            try {
+                await api.authUser(obj).then(res => {
+                    //User successfully added, reset form and go to home
+                    this.setState({
+                        username: '',
+                        password: ''
+                    });
+                    this.props.history.push('/home'); //If authenticated go to home
+                });
+            } catch {
+                window.alert('Incorrect Username or Password');
+            }
+        } else {
+            window.alert('You must enter a valid username and password');
+        }
+
     }
 
     handleSignUp = (e) => {

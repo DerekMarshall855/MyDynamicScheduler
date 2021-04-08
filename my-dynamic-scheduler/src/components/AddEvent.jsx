@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+
 class AddEvent extends React.Component {
    
     constructor(props) {
@@ -17,7 +18,7 @@ class AddEvent extends React.Component {
         this.setState({event: e.target.value});
     }
 
-    handleDateChange = (e) => {
+    handleDateChange = (e) => {  
         e.preventDefault();
         this.setState({date: e.target.value});
     }
@@ -48,12 +49,12 @@ class AddEvent extends React.Component {
                             <td><input type="text" value={this.state.event} onChange={this.handleEventChange} /></td>
                         </tr>
                         <tr>
-                            <td><label>Date (DD-MM-YYYY): </label></td>
-                            <td><input type="text" value={this.state.date} onChange={this.handleDateChange} /></td>
+                            <td><label>Date: </label></td>
+                            <td><input type= "date" value = {this.state.date} onChange={this.handleDateChange} /> </td>
                         </tr>
                         <tr>
                             <td><label>Time: </label></td>
-                            <td><input type="text" value = {this.state.time} onChange={this.handleTimeChange} /></td>
+                            <td><input type= "time" value = {this.state.time} onChange={this.handleTimeChange} /></td>
                         </tr>
                         <tr>
                             <td><label>Duration: </label></td>

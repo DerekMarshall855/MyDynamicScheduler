@@ -15,9 +15,5 @@
   "bugs": {
     "url": "https://github.com/derekmarshall855/mydynamicscheduler/issues"
   },
-  "homepage": "https://github.com/derekmarshall855/mydynamicscheduler#readme",
-  "dependencies": {
-    "date-fns": "^2.19.0",
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/derekmarshall855/mydynamicscheduler#readme"
 }

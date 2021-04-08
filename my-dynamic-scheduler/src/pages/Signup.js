@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import sha1 from 'js-sha1';
+import api from '../api/user_api';
 
 class Signup extends React.Component {
 
@@ -21,10 +23,41 @@ class Signup extends React.Component {
         this.setState({password: e.target.value});
     }
 
-    handleFormSubmit = (e) => {
+    handleFormSubmit = async (e) => {
         e.preventDefault();
-        //Authenticate
-        this.props.history.push('/home'); //If authenticated
+        //Convert form data to json for db
+        var obj = JSON.parse(`{"username":"${this.state.username}", "password":"${sha1(this.state.password)}"}`);
+
+        //Authenticate/add user
+        if(this.state.username.localeCompare('') !== 0 && this.state.password.localeCompare('') !== 0) {
+            if(this.state.username.indexOf(' ') >= 0 || this.state.password.indexOf(' ') >= 0) {
+                window.alert('Username and password may not include spaces');
+            } else {
+                try {
+                    await api.getUserByName(obj.username).then(res => {
+                        window.alert('user with that name already exists');
+                    })
+                } catch {
+                    try {
+                        await api.addUser(obj).then(res => {
+                            //User successfully added, reset form and go to home
+                            this.setState({
+                                username: '',
+                                password: ''
+                            });
+                            this.props.history.push('/home'); //If authenticated go to home
+                        });
+                    } catch {
+                        window.alert('Error, user not added');
+                    }
+                }
+            }
+        } else {
+            window.alert('You must enter both a username and a password');
+        }
+
+
+        
         //If not, output "bad user/pass to div"
     }
 
