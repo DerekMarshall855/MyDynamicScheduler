@@ -71,7 +71,7 @@ class AddTask extends React.Component {
         } else {
             window.alert('You must include a title and a due date in a task');
         }
-        this.props.history.push('/calendar');
+        window.location.reload(false);
     }
 
     render() {
