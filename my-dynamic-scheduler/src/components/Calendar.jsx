@@ -94,23 +94,10 @@ class Calendar extends React.Component {
         let day = startDate;
         let formattedDate = "";
 
-        /*
-          Todo:
-            - Write custom function checkEvent(), takes in day, returns event json that happens on that day or returns string ''
-            - Write another that does the same for tasks and due_date, checkTask()
-            - Check if event/task is of type string, 
-            - If it is one or both call days.push for whatever needs to be in that square (all event and task titles formatted as task: title, event: title)
-        */
-        //let event = '';
-        //let task = '';
-
         while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
             let temp = dayCheck(this.state.events, this.state.tasks, day.toISOString().split('T')[0]); //Check tasks/events on this day, creates string for printing
-            //event = checkEvent(day);
-            //task = checkTask(day);
             formattedDate = format(day, dateFormat);
-            //if (typeof(task) !== 'string' && typeof(event) !== 'string') {Do push for event + task on that day}
             days.push(
             <div
                 className={`col cell ${
@@ -120,7 +107,7 @@ class Calendar extends React.Component {
                 }`}
                 key={day}
             >
-                <p className="temp">{temp}</p>
+                <p className="temp">{temp}</p> {/*Adds all events/tasks to calendar day*/}
                 <span className="number">{formattedDate}</span>
             </div>
             );
