@@ -11,8 +11,8 @@ class Calendar extends React.Component {
       this.state = {
         currentMonth: new Date (),
         selectedDate: new Date (),
-        tasks: [],
-        events: []
+        tasks: [{"title":"","due_date":"","difficulty":"","duration":""}],
+        events: [{"title":"","date":"","time":"","duration":""}]
       }; 
     }
 
@@ -85,7 +85,6 @@ class Calendar extends React.Component {
 
         //First sunday of the calendar month eg. March 28
         const startDate = startOfWeek(monthStart);
-        console.log(startDate);
         //Last saturday of the calendar month eg. May 1
         const endDate = endOfWeek(monthEnd);
 
@@ -143,19 +142,15 @@ class Calendar extends React.Component {
       When both ready, render actual page. Page technically renders 3 times (2 empty divs, 1 actual render), but its the best we could do for now
     */
     render = () => {
-        if (typeof this.state.events === 'string' || typeof this.state.tasks === 'string' ) {
-          return (
-            <div></div>
-          );
-        } else {
-          return (
-            <div className="calendar">
-              {this.renderHeader()}
-              {this.renderDays()}
-              {this.renderCells()}
-            </div>
-          );
-        }
+
+        return (
+          <div className="calendar">
+            {this.renderHeader()}
+            {this.renderDays()}
+            {this.renderCells()}
+          </div>
+        );
+
       }
     }
 

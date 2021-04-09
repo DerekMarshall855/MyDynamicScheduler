@@ -111,10 +111,6 @@ class AddEvent extends React.Component {
                                 </td>
                                 
                         </tr>
-                        <tr>
-                            <td><input type="checkbox" value="Recurring" /></td>
-                            <td><label>Recurring Event</label></td>
-                        </tr>
                     </tbody>
                 </table>
                 <button type="submit" value="Add Event">Add Event</button>
