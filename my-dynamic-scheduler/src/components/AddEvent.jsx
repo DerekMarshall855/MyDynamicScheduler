@@ -71,7 +71,7 @@ class AddEvent extends React.Component {
         } else {
             window.alert('You must include a title, date, and time in an event');
         }
-        this.props.history.push('/calendar');
+        window.location.reload(false);
     }
 
     render() {
