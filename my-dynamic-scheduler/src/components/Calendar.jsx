@@ -1,7 +1,6 @@
 import React from "react";
 import task_api from "../api/task_api.js";
 import event_api from "../api/event_api.js";
-import dayCheck from "../js_functions/DayCheck.js";
 import { subMonths, addMonths, isSameMonth, startOfWeek, endOfWeek, addDays, format, startOfMonth, endOfMonth, isSameDay} from "date-fns";
 
 class Calendar extends React.Component {
@@ -11,8 +10,8 @@ class Calendar extends React.Component {
       this.state = {
         currentMonth: new Date (),
         selectedDate: new Date (),
-        tasks: [{"title": "", "due_date": "", "difficulty": "easy", "duration":"30"}],
-        events: [{"title": "", "date": "", "time": "", "duration":"30"}]
+        tasks: '',
+        events: ''
       }; 
     }
 
@@ -79,16 +78,13 @@ class Calendar extends React.Component {
 
         //First Day of the month eg. April 1
         const monthStart = startOfMonth(currentMonth);
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> a9c22f4351d31cc4512ea5a7d4358f522172ddfb
         //Last Day of the Month eg. April 30
         const monthEnd = endOfMonth(monthStart);
 
         //First sunday of the calendar month eg. March 28
         const startDate = startOfWeek(monthStart);
+        console.log(startDate);
         //Last saturday of the calendar month eg. May 1
         const endDate = endOfWeek(monthEnd);
 
@@ -108,19 +104,13 @@ class Calendar extends React.Component {
         //let event = '';
         //let task = '';
 
-        console.log(this.state.events[0].date);
-        
+      
         while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
-            let temp = dayCheck(this.state.events, this.state.tasks, day.toISOString().split('T')[0]); //Check tasks/events on this day, creates string for printing
             //event = checkEvent(day);
             //task = checkTask(day);
             formattedDate = format(day, dateFormat);
 
-            let checkDateFormat = day.toISOString().split('T')[0]
-
-            // let formattedCheckDate = format(day, checkDateFormat);
-            console.log(checkDateFormat);
             //if (typeof(task) !== 'string' && typeof(event) !== 'string') {Do push for event + task on that day}
             days.push(
             <div
@@ -131,7 +121,6 @@ class Calendar extends React.Component {
                 }`}
                 key={day}
             >
-                <p className="temp">{temp}</p>
                 <span className="number">{formattedDate}</span>
             </div>
             );
@@ -166,13 +155,19 @@ class Calendar extends React.Component {
       When both ready, render actual page. Page technically renders 3 times (2 empty divs, 1 actual render), but its the best we could do for now
     */
     render = () => {
-        return (
-          <div className="calendar">
-            {this.renderHeader()}
-            {this.renderDays()}
-            {this.renderCells()}
-          </div>
-        );
+        if (typeof this.state.events === 'string' || typeof this.state.tasks === 'string' ) {
+          return (
+            <div></div>
+          );
+        } else {
+          return (
+            <div className="calendar">
+              {this.renderHeader()}
+              {this.renderDays()}
+              {this.renderCells()}
+            </div>
+          );
+        }
       }
     }
 
