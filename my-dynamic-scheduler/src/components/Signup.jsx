@@ -60,17 +60,24 @@ class Signup extends React.Component {
         
         //If not, output "bad user/pass to div"
     }
-
     render() {
         return (
             <div className="Login">
                 <h1>Sign Up Page</h1>
                 <form onSubmit={this.handleFormSubmit}>
-                    <label>Username</label>
-                    <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-                    <label>Password</label>
-                    <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-                    <input type="submit" value="Sign Up"/>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label>Username:</label></td>
+                            <td><input type="text" value={this.state.username} onChange={this.handleUsernameChange} /></td>
+                        </tr>
+                        <tr>
+                            <td><label>Password:</label></td>
+                            <td><input type="text" value={this.state.password} onChange={this.handlePasswordChange} /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="submit" value="Sign Up">Sign up</button>
                 </form>
 
                 <div id="successful"></div>

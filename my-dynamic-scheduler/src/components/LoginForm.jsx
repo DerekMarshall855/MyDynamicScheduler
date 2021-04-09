@@ -51,7 +51,7 @@ class LoginForm extends React.Component{
 
     handleSignUp = (e) => {
         e.preventDefault();
-        this.props.history.push('/signup');
+        this.props.history.push('/signuppage');
     }
 
     render() {

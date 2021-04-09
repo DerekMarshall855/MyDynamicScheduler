@@ -127,6 +127,63 @@ color: black;
   background-color: var(--main4-color);
 }
 
+/*Add tasks and events*/
+
+/* .addTask table{
+  width: 100%;
+  padding: 0 215px;
+  
+  
+} */
+.Login table{
+width: 80%;
+margin: 0 50px;
+}
+
+.Login label{
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: #555555;
+  text-align: end;
+}
+
+.Login input[type=text]{
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 20px;
+  outline: none;
+  padding: 10px;
+  margin: 10px 0;
+  
+}
+
+.Login input[type=checkbox]{
+width: 15px; 
+height: 15px;
+margin: 10px 5px;
+}
+
+.Login button{
+cursor: pointer;
+border: 0;
+border-radius: 5em;
+outline-width: thin;
+outline-color: #555555;;
+color: #fff;
+background: linear-gradient(to right,#769fcd,#88b5e9);
+padding: 10px 20px;
+margin: 25px 0px;
+font-size: 16px;
+}
+.Login p{
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 0.5px;
+color: #555555;
+}
+
+
 
 /* Calendar GRID */
 
