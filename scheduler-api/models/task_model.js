@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //Create User schema
 const Task = new Schema(
     {
-        task: {type: String, required: true},
+        title: {type: String, required: true},
         due_date: {type: String, required: true},
         difficulty: {type: String, required: true},
         duration: {type: String, required: true}

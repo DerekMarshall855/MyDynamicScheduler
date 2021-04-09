@@ -32,7 +32,7 @@ class Calendar extends React.Component {
         const days = [];
         for (let i = 0; i < 7; i++) {
           days.push(
-            <div className="col col-center" >
+            <div className="col col-center" key={i}>
              {dayNames[i]}
             </div>
           );
@@ -60,6 +60,11 @@ class Calendar extends React.Component {
         let days = [];
         let day = startDate;
         let formattedDate = "";
+        /*
+          - Do API calls to get a list of all tasks and events (See AddEvent.jsx and AddTask.jsx at the top for reference) in 2 variables
+          - When looping, check if current day == day of event/task
+          - If true edit day/edit div (For now just change colour)
+        */
         while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
             formattedDate = format(day, dateFormat);

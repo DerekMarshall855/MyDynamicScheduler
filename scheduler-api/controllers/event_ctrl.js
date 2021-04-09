@@ -43,7 +43,7 @@ deleteEvent = async (req, res) => {
         if (!event) {
             return res
                 .status(404)
-                .json({ success: false, error: `User not found` });
+                .json({ success: false, error: `Event not found` });
         }
 
         return res.status(200).json({ success: true, data: event });

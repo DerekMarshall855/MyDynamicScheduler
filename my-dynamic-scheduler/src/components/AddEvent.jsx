@@ -22,7 +22,7 @@ class AddEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            event: '',
+            title: '',
             date: '',
             time: '',
             duration: '30'
@@ -31,7 +31,7 @@ class AddEvent extends React.Component {
 
     handleEventChange = (e) => {
         e.preventDefault();
-        this.setState({event: e.target.value});
+        this.setState({title: e.target.value});
     }
 
     handleDateChange = (e) => {  
@@ -48,11 +48,29 @@ class AddEvent extends React.Component {
         this.setState({duration: e.target.value});
     }
 
-    handleFormSubmit = (e) => {
+    handleFormSubmit = async (e) => {
         e.preventDefault();
-        var obj = JSON.parse(`{"event":"${this.state.event}", "date":"${this.state.date}", "time":"${this.state.time}", "duration":"${this.state.duration}"}`);
-        console.log(obj);
-        //Add obj to db
+        var obj = JSON.parse(`{"title":"${this.state.title}", "date":"${this.state.date}", "time":"${this.state.time}", "duration":"${this.state.duration}"}`);
+        //console.log(obj);
+        if(this.state.title.localeCompare('') !== 0 && this.state.date.localeCompare('') !== 0 && this.state.time.localeCompare('') !== 0) {
+
+            try {
+                await api.addEvent(obj).then(res => {
+                    //User successfully added, reset form and go to home
+                    this.setState({
+                        title: '',
+                        date: '',
+                        time: '',
+                        duration: '30'
+                    });
+                });
+            } catch {
+                window.alert('Error, user not added');
+            }
+
+        } else {
+            window.alert('You must include a title, date, and time in an event');
+        }
         this.props.history.push('/calendar');
     }
 
@@ -65,7 +83,7 @@ class AddEvent extends React.Component {
                     <tbody>
                         <tr>
                             <td><label>Description of Event: </label></td>
-                            <td><input type="text" value={this.state.event} onChange={this.handleEventChange} /></td>
+                            <td><input type="text" value={this.state.title} onChange={this.handleEventChange} /></td>
                         </tr>
                         <tr>
                             <td><label>Date: </label></td>

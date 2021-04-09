@@ -21,7 +21,7 @@ class AddTask extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            task: '',
+            title: '',
             due_date: '',
             difficulty: 'easy',
             duration: '30'
@@ -30,7 +30,7 @@ class AddTask extends React.Component {
 
     handleTaskChange = (e) => {
         e.preventDefault();
-        this.setState({task: e.target.value});
+        this.setState({title: e.target.value});
     }
 
     handleDueDateChange = (e) => {
@@ -47,13 +47,33 @@ class AddTask extends React.Component {
         this.setState({duration: e.target.value});
     }
 
-    handleFormSubmit = (e) => {
+    handleFormSubmit = async (e) => {
         e.preventDefault();
-        var obj = JSON.parse(`{"task":"${this.state.task}", "due_date":"${this.state.due_date}", "difficulty":"${this.state.difficulty}", "duration":"${this.state.duration}"}`);
-        console.log(obj);
+        var obj = JSON.parse(`{"title":"${this.state.title}", "due_date":"${this.state.due_date}", "difficulty":"${this.state.difficulty}", "duration":"${this.state.duration}"}`);
+        //console.log(obj);
         //Add obj to db
+        if(this.state.title.localeCompare('') !== 0 && this.state.due_date.localeCompare('') !== 0) {
+
+            try {
+                await api.addTask(obj).then(res => {
+                    //User successfully added, reset form and go to home
+                    this.setState({
+                        title: '',
+                        due_date: '',
+                        difficulty: 'easy',
+                        duration: '30'
+                    });
+                });
+            } catch {
+                window.alert('Error, user not added');
+            }
+
+        } else {
+            window.alert('You must include a title and a due date in a task');
+        }
         this.props.history.push('/calendar');
     }
+
     render() {
         return (
             <div className="addTask">
@@ -63,7 +83,7 @@ class AddTask extends React.Component {
                     <tbody>
                         <tr>
                             <td><label>Description of Task: </label></td>
-                            <td><input type="text" value={this.state.task} onChange={this.handleTaskChange} /></td>
+                            <td><input type="text" value={this.state.title} onChange={this.handleTaskChange} /></td>
                         </tr>
                         <tr>
                             <td><label>Due Date: </label></td>
