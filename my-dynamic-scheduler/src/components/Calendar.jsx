@@ -85,7 +85,7 @@ class Calendar extends React.Component {
 
         //First sunday of the calendar month eg. March 28
         const startDate = startOfWeek(monthStart);
-        console.log(startDate);
+       
         //Last saturday of the calendar month eg. May 1
         const endDate = endOfWeek(monthEnd);
 

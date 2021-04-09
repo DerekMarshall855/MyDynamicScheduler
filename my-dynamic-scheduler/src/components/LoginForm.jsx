@@ -37,6 +37,7 @@ class LoginForm extends React.Component{
                         username: '',
                         password: ''
                     });
+                    
                     this.props.history.push('/home'); //If authenticated go to home
                 });
             } catch {
