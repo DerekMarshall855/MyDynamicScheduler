@@ -1,6 +1,21 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import api from '../api/task_api.js';
 
+/*
+HOW TO USE API TO GET ALL TASKS:
+--------------------------------------------------
+import api from api/task_api.js
+Do code:
+    try {
+        await api.getTasks().then(res => {
+            //Search successful, res is now a list of tasks
+            console.log(res);
+        });
+    } catch {
+        //Whatever we do if there are no tasks currently in db
+    }
+*/
 
 class AddTask extends React.Component {
     constructor(props) {
@@ -8,8 +23,8 @@ class AddTask extends React.Component {
         this.state ={
             task: '',
             due_date: '',
-            difficulty: '',
-            duration: ''
+            difficulty: 'easy',
+            duration: '30'
         };
     }
 
@@ -18,8 +33,8 @@ class AddTask extends React.Component {
         this.setState({task: e.target.value});
     }
 
-    handleDueDateChange = date => {
-        this.setState({due_date: date});
+    handleDueDateChange = (e) => {
+        this.setState({due_date: e.target.value});
     }
 
     handleDifficultyChange = (e) => {
@@ -34,7 +49,10 @@ class AddTask extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        this.props.history.push('/CalendarPage');
+        var obj = JSON.parse(`{"task":"${this.state.task}", "due_date":"${this.state.due_date}", "difficulty":"${this.state.difficulty}", "duration":"${this.state.duration}"}`);
+        console.log(obj);
+        //Add obj to db
+        this.props.history.push('/calendar');
     }
     render() {
         return (

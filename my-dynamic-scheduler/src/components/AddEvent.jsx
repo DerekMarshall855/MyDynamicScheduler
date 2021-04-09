@@ -1,5 +1,21 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import api from '../api/event_api.js';
+
+/*
+HOW TO USE API TO GET ALL EVENTS:
+--------------------------------------------------
+import api from api/event_api.js
+Do code:
+    try {
+        await api.getEvents().then(res => {
+            //Search successful, res is now a list of events
+            console.log(res);
+        });
+    } catch {
+        //Whatever we do if there are no tasks currently in db
+    }
+*/
 
 class AddEvent extends React.Component {
    
@@ -9,7 +25,7 @@ class AddEvent extends React.Component {
             event: '',
             date: '',
             time: '',
-            duration: ''
+            duration: '30'
         };
     }
 
@@ -34,7 +50,10 @@ class AddEvent extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        this.props.history.push('/CalendarPage');
+        var obj = JSON.parse(`{"event":"${this.state.event}", "date":"${this.state.date}", "time":"${this.state.time}", "duration":"${this.state.duration}"}`);
+        console.log(obj);
+        //Add obj to db
+        this.props.history.push('/calendar');
     }
 
     render() {
