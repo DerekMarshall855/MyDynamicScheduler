@@ -78,11 +78,7 @@ class Calendar extends React.Component {
 
         //First Day of the month eg. April 1
         const monthStart = startOfMonth(currentMonth);
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 031cb35e0126a7e86993e1f04b9b4c5297cc7e2b
         //Last Day of the Month eg. April 30
         const monthEnd = endOfMonth(monthStart);
 
@@ -108,11 +104,18 @@ class Calendar extends React.Component {
         //let event = '';
         //let task = '';
 
+        console.log(this.state.events[0].date);
+        
         while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
             //event = checkEvent(day);
             //task = checkTask(day);
             formattedDate = format(day, dateFormat);
+
+            let checkDateFormat = day.toISOString().split('T')[0]
+
+            // let formattedCheckDate = format(day, checkDateFormat);
+            console.log(checkDateFormat);
             //if (typeof(task) !== 'string' && typeof(event) !== 'string') {Do push for event + task on that day}
             days.push(
             <div
