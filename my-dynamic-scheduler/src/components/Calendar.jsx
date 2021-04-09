@@ -1,6 +1,7 @@
 import React from "react";
 import task_api from "../api/task_api.js";
 import event_api from "../api/event_api.js";
+import dayCheck from "../js_functions/DayCheck.js";
 import { subMonths, addMonths, isSameMonth, startOfWeek, endOfWeek, addDays, format, startOfMonth, endOfMonth, isSameDay} from "date-fns";
 
 class Calendar extends React.Component {
@@ -10,8 +11,8 @@ class Calendar extends React.Component {
       this.state = {
         currentMonth: new Date (),
         selectedDate: new Date (),
-        tasks: '',
-        events: ''
+        tasks: [],
+        events: []
       }; 
     }
 
