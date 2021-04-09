@@ -2,21 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import api from '../api/task_api.js';
 
-/*
-HOW TO USE API TO GET ALL TASKS:
---------------------------------------------------
-import api from api/task_api.js
-Do code:
-    try {
-        await api.getTasks().then(res => {
-            //Search successful, res is now a list of tasks
-            console.log(res);
-        });
-    } catch {
-        //Whatever we do if there are no tasks currently in db
-    }
-*/
-
 class AddTask extends React.Component {
     constructor(props) {
         super(props);
@@ -116,10 +101,6 @@ class AddTask extends React.Component {
                                     <option value = "300">5 hours</option>
                                 </select>
                             </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" value="Recurring" /></td>
-                            <td><label>Recurring Task</label></td>
                         </tr>
                     </tbody>
                 </table>
