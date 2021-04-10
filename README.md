@@ -24,3 +24,8 @@ The program was originally built for CP476 - Internet Computing course at Wilfri
 - Derek Marshall (Backend Lead)
 - Rebecca Knezy (Frontend Lead)
 - Joanne Bui (Scheduling Algorithm Lead)
+
+## Resources
+- react-router-dom
+- date-fns
+-

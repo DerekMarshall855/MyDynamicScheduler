@@ -1,7 +1,7 @@
 Header for group project:???
-Project title: MyDynamicSchedule
-Name: Rebecca Knezy, Derek Marshall, Joanne Bui
-ID: list ID in order, separated by comma 
+Project title: MyDynamicScheduler
+Name: Derek Marshall, Rebecca Knezy, Joanne Bui
+ID: 170223090, 170767800, 170569830
 Statement: We claim that the enclosed project submission is our team work.
 
 Evaluation grid: [self-evaluation/total/marker-evaluation]
