@@ -34,6 +34,7 @@ class EventList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: localStorage.getItem('username'),
             events: [],
             columns: [],
             eventLoading: false
@@ -44,7 +45,7 @@ class EventList extends React.Component {
         this.setState({eventLoading: true});
 
         try {
-            await event_api.getEvents().then(res => {
+            await event_api.getEvents(this.state.user).then(res => {
                 this.setState({
                     events: res.data.data,
                     eventLoading: false

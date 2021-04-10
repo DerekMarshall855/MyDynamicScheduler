@@ -22,6 +22,7 @@ class AddEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: localStorage.getItem('username'),
             title: '',
             date: '',
             time: '',
@@ -50,7 +51,7 @@ class AddEvent extends React.Component {
 
     handleFormSubmit = async (e) => {
         e.preventDefault();
-        var obj = JSON.parse(`{"title":"${this.state.title}", "date":"${this.state.date}", "time":"${this.state.time}", "duration":"${this.state.duration}"}`);
+        var obj = JSON.parse(`{"user":"${this.state.user}","title":"${this.state.title}", "date":"${this.state.date}", "time":"${this.state.time}", "duration":"${this.state.duration}"}`);
         //console.log(obj);
         if(this.state.title.localeCompare('') !== 0 && this.state.date.localeCompare('') !== 0 && this.state.time.localeCompare('') !== 0) {
 

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 //Create User schema
 const Event = new Schema(
     {
+        user: {type: String, required: true},
         title: {type: String, required: true},
         date: {type: String, required: true},
         time: {type: String, required: true},

@@ -45,7 +45,7 @@ class Signup extends React.Component {
                                 username: '',
                                 password: ''
                             });
-                            this.props.history.push('/home'); //If authenticated go to home
+                            this.props.history.push('/'); //If authenticated go to home
                         });
                     } catch {
                         window.alert('Error, user not added');

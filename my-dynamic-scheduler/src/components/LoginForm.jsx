@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import {logIn} from '../js_functions/IsLogin';
 import sha1 from 'js-sha1';
 import api from '../api/user_api.js';
 
@@ -9,8 +10,47 @@ class LoginForm extends React.Component{
         super(props);
         this.state = {
             username:'',
-            password:''
+            password:'',
+            rememberMe: false
         };
+    }
+
+    componentDidMount = async () => {
+        const username = await this.getRememberedUser();
+        this.setState({
+            username: username || '',
+            rememberMe: username ? true : false
+        });
+    }
+
+    rememberUser = () => {
+        localStorage.setItem("user", this.state.username);
+    }
+
+    getRememberedUser = async () => {
+        const username = localStorage.getItem("user");
+        if (username !== null) {
+            return username;
+        }
+    }
+
+    forgetUser = () => {
+        localStorage.removeItem('user');
+      }
+
+    handleRememberMe = (e) => {
+        //e.preventDefault();
+        if (this.state.rememberMe) {
+            e.target.checked=true;
+        } else {
+            e.target.checked=false;
+        }
+        this.setState({rememberMe: !this.state.rememberMe});
+        if (this.state.rememberMe) {
+            this.rememberUser();
+        } else {
+            this.forgetUser();
+        }
     }
 
     handleUsernameChange = (e) => {
@@ -33,11 +73,16 @@ class LoginForm extends React.Component{
             try {
                 await api.authUser(obj).then(res => {
                     //User successfully added, reset form and go to home
+                    if (this.state.rememberMe) {
+                        this.rememberUser();
+                    } else {
+                        this.forgetUser();
+                    }
+                    logIn(this.state.username);
                     this.setState({
                         username: '',
                         password: ''
                     });
-                    
                     this.props.history.push('/home'); //If authenticated go to home
                 });
             } catch {
@@ -72,7 +117,7 @@ class LoginForm extends React.Component{
                     </tbody>
                 </table>
                 <div>
-                   <input type="checkbox" value="Remember"/>
+                   <input type="checkbox" value="Remember" checked={this.state.rememberMe} onChange={this.handleRememberMe}/>
                     <label>Remember Me</label> 
                 </div>
                 <button type="submit" value="Log In">Login</button>

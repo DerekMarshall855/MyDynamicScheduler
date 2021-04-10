@@ -5,7 +5,7 @@ const api = axios.create({
 });
 
 export const addTask = payload => api.post('/task', payload);
-export const getTasks = () => api.get('/task');
+export const getTasks = username => api.get(`/task/${username}`);
 export const deleteTask = id => api.delete(`/task/${id}`);
 
 const apis = {

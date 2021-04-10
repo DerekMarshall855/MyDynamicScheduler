@@ -9,6 +9,7 @@ class Calendar extends React.Component {
     constructor() {
       super();
       this.state = {
+        user: localStorage.getItem('username'),
         currentMonth: new Date (),
         selectedDate: new Date (),
         tasks: [{"title":"","due_date":"","difficulty":"","duration":""}],
@@ -18,7 +19,7 @@ class Calendar extends React.Component {
 
     componentDidMount = async () => {
       try {
-          await task_api.getTasks().then(res => {
+          await task_api.getTasks(this.state.user).then(res => {
               //Search successful, res is now a list of tasks
               //console.log(res.data);
               this.setState({tasks: res.data.data});
@@ -29,7 +30,7 @@ class Calendar extends React.Component {
         console.log("There are no tasks in the db");
       }
       try {
-        await event_api.getEvents().then(res => {
+        await event_api.getEvents(this.state.user).then(res => {
             //Search successful, res is now a list of tasks
             //console.log(res.data);
             this.setState({events: res.data.data});
@@ -143,7 +144,6 @@ class Calendar extends React.Component {
       When both ready, render actual page. Page technically renders 3 times (2 empty divs, 1 actual render), but its the best we could do for now
     */
     render = () => {
-
         return (
           <div className="calendar">
             {this.renderHeader()}

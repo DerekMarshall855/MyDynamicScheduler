@@ -50,9 +50,9 @@ deleteEvent = async (req, res) => {
     }).catch(err => console.log(err));
 }
 
-//Gets all tasks
+//Gets all tasks of user
 getEvents = async (req, res) => {
-    await Event.find({}, (err, events) => {
+    await Event.find({user: req.params.username}, (err, events) => {
         if (err) {
             return res.status(400).json({ success: false, error: err });
         }

@@ -6,6 +6,7 @@ class AddTask extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
+            user: localStorage.getItem("username"),
             title: '',
             due_date: '',
             difficulty: 'easy',
@@ -34,7 +35,7 @@ class AddTask extends React.Component {
 
     handleFormSubmit = async (e) => {
         e.preventDefault();
-        var obj = JSON.parse(`{"title":"${this.state.title}", "due_date":"${this.state.due_date}", "difficulty":"${this.state.difficulty}", "duration":"${this.state.duration}"}`);
+        var obj = JSON.parse(`{"user":"${this.state.user}","title":"${this.state.title}", "due_date":"${this.state.due_date}", "difficulty":"${this.state.difficulty}", "duration":"${this.state.duration}"}`);
         //console.log(obj);
         //Add obj to db
         if(this.state.title.localeCompare('') !== 0 && this.state.due_date.localeCompare('') !== 0) {

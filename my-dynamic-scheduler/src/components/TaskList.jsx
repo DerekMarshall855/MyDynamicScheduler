@@ -35,6 +35,7 @@ class TaskList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: localStorage.getItem('username'),
             tasks: [],
             columns: [],
             taskLoading: false
@@ -45,7 +46,7 @@ class TaskList extends React.Component {
         this.setState({taskLoading: true});
 
         try {
-            await task_api.getTasks().then(res => {
+            await task_api.getTasks(this.state.user).then(res => {
                 this.setState({
                     tasks: res.data.data,
                     taskLoading: false
