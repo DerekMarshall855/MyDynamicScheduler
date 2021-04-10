@@ -117,7 +117,7 @@ class LoginForm extends React.Component{
                         </tr>
                         <tr>
                             <td><label>Password: </label></td>
-                            <td><input type="text" value={this.state.password} onChange={this.handlePasswordChange} /></td>
+                            <td><input type="password" value={this.state.password} onChange={this.handlePasswordChange} /></td>
                         </tr>
                     </tbody>
                 </table>

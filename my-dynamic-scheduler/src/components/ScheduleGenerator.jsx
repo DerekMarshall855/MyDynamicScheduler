@@ -65,6 +65,7 @@ class ScheduleGenerator extends React.Component{
         for(let i = 0; i < schedule.length; i++){
             result.push(`${schedule[i].startTime} - ${schedule[i].endTime} - ${schedule[i].title} | `);
         }
+        result.join(" ");
         result[result.length-1] = result[result.length-1].slice(0, -3);
         localStorage.setItem('schedule', result);
         this.setState({displayedSchedule: result}); 
@@ -212,16 +213,28 @@ class ScheduleGenerator extends React.Component{
         return (
             <div className="ScheduleGenerator">
             <h1>Schedule for the day!</h1>
+            <p>If no custom time is inserted a schedule will generate from 8:30 to 20:00.</p>
                 <form>
-                    <label>Start time: </label>
-                    <input type="time" name="startTime"  onChange={this.handleStartTime}/>
-                    
-                    <label>End time: </label>
-                    <input type="time" name="endTime" onChange={this.handleEndTime}/>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                            <label>Start time: </label>
+                            <input type="time" name="startTime"  onChange={this.handleStartTime}/>
+                            </td>
+                            <td>
+                            <label>End time: </label>
+                            <input type="time" name="endTime" onChange={this.handleEndTime}/>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
 
                     <button type="submit" onClick={this.scheduler}>Generate Your Schedule For Today!</button>
                 </form>
-                <p>{this.state.displayedSchedule}</p>
+                <div className="scheduleDisplay"><p>{this.state.displayedSchedule}</p></div>
+                
 
             <p>This schedule displays the tasks that are due first and listed from easiest to hardest. It also includes the events you have scheduled for the day.</p>           
             </div>
