@@ -14,8 +14,6 @@ The program was originally built for CP476 - Internet Computing course at Wilfri
 - generated calendar with events/tasks in each day
 
 ## How to deploy
-- Create mongodb database mydynamicscheduler
-- Create 3 collections: users, events, tasks
 - Open command line in scheudler-api file, npm install dependencies
 - run command: node nodemon.js
 - Open seperate command line in my-dynamic-scheduler file, npm install dependencies
