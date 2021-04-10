@@ -4,7 +4,11 @@ Author: Rebecca Knezy, Derek Marshall, Joanne Bui
 
 Date: April 10, 2021
 
-##P2.1 Client Side Component & UI
+# Hosted on Github
+
+LINK: https://github.com/DerekMarshall855/MyDynamicScheduler
+
+## P2.1 Client Side Component & UI
 
 ## Login Page
 
@@ -40,21 +44,21 @@ Date: April 10, 2021
 
 ![T1.1 File Upload](images/t1.1_2.png){width=600px}
 
-##Log Out Page
+## Log Out Page
 
 ![Option to Log Out](images/logout.png){width=600px}
 
 
 
-##P2.2 Server side CGI components
+## P2.2 Server side CGI components
 
 
 
-##P2.3 Database Tier Design, Data, Usage
+## P2.3 Database Tier Design, Data, Usage
 
 ![Mongodb mydynamicscheduler Database](images/mongodb.png){width=600px}
 
-##Collections in mydynamicscheduler
+## Collections in mydynamicscheduler
 
 ![Users Layout](images/db_users.png){width=600px}
 To save accounts when users make an account through the sign up page.
@@ -66,17 +70,3 @@ To save events when users add an event through the form in "Calendar" page.
 To save events when users add a task through the form in "Calendar" page.
 
 Accessed when creating the monthly calendars. If there is an event or task, it will be shown in the corresponding cell on the calendar. The schedule generator also retrieves tasks from the collection for certain days.
-
-
-
-
-
-
-
-
-
-
-**References**
-
-1. [HBF, CP476 Assignment template](a5.html)
-2. Add your references used in developing your solutions. 
