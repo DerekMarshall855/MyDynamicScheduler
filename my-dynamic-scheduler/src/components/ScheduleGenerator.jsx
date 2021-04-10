@@ -112,9 +112,7 @@ class ScheduleGenerator extends React.Component{
         
         
         let startTime = this.state.startTime;
-        console.log(startTime);
         let endTime = this.state.endTime;
-        console.log(endTime);
         // let startTime = "08:30";
         // let endTime ="18:00";
         let fullStartTime = currentDate + 'T' + startTime + ":00";
@@ -179,7 +177,10 @@ class ScheduleGenerator extends React.Component{
                 i += 1;
             } else if (timeAdded > todayEvents[count].startTime) { //Task time exceeds allowed length
                 //change tempStartTime to todayEvents[count].endTime, Increment count by one
-                tempStartTime = parseISO(currentDate + 'T' + todayEvents[count].endTime + ":00");
+                if (todayEvents[count].endTime > format(dateObj, timeFormat)) {
+                    tempStartTime = parseISO(currentDate + 'T' + todayEvents[count].endTime + ":00");
+                    
+                } 
                 count += 1;
                 scheduleIndex += 1;
 
