@@ -1,5 +1,8 @@
 const User = require('../models/user_model');
-//sha1 = require('js-sha1');
+
+/*
+    Controller to define all user functions
+*/
 
 //Creates user from json
 createUser = (req, res) => {

@@ -1,5 +1,9 @@
 const Task = require('../models/task_model');
 
+/*
+    Controller to define all task functions
+*/
+
 //Creates event from json
 createTask = (req, res) => {
     const body = req.body;

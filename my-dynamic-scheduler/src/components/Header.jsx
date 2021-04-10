@@ -1,5 +1,8 @@
 import React from 'react';
 
+/*
+    Header for private webpages
+*/
 const Header = () => {
     return (
         <div className="top-container">

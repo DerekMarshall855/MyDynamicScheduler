@@ -1,3 +1,7 @@
+/*
+    Utility function for setting current user and login/auth status
+*/
+
 export const logIn = (name) => {
         localStorage.setItem('auth', true);
         localStorage.setItem('username', name);

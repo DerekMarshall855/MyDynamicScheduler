@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+/*
+    Defines formatting for each task, defines collection name for tasks
+*/
+
 //Create User schema
 const Task = new Schema(
     {

@@ -12,6 +12,12 @@ import EditCalendar from '../pages/EditCalendar';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
+/*
+    Main router for program, contains all routes
+    Uses both public and private routes
+    Private - Accessible only if user logged in
+    Public - Accessible to everyone
+*/
 
 const Main = () => {
     console.log(localStorage.getItem('auth'));

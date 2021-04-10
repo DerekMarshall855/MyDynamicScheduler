@@ -1,5 +1,9 @@
 const express = require('express');
 
+/*
+    Defines routes for each function of event controller
+*/
+
 const EventCtrl = require('../controllers/event_ctrl');
 
 const router = express.Router();

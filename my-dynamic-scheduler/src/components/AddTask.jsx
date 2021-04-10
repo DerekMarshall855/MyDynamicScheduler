@@ -2,6 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import api from '../api/task_api.js';
 
+/*
+    Form component for adding tasks, works nearly the same as AddEvent.jsx
+*/
+
 class AddTask extends React.Component {
     constructor(props) {
         super(props);

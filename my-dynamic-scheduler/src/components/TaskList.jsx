@@ -9,7 +9,9 @@ const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
 `
-
+/*
+    Same as EventList but for Tasks
+*/
 
 class TaskDelete extends React.Component {
     taskDelete = event => {

@@ -1,5 +1,9 @@
 const express = require('express');
 
+/*
+    Defines routes for each function of task controller
+*/
+
 const TaskCtrl = require('../controllers/task_ctrl');
 
 const router = express.Router();

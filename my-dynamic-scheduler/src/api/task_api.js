@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+/*
+    Uses axios to call task_api and create functions
+*/
+
 const api = axios.create({
     baseURL: 'http://localhost:9000/task_api'
 });

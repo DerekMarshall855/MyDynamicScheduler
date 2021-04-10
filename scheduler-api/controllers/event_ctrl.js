@@ -1,5 +1,9 @@
 const Event = require('../models/event_model');
 
+/*
+    Controller to define all event functions
+*/
+
 //Creates event from json
 createEvent = (req, res) => {
     const body = req.body;
