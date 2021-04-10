@@ -38,7 +38,7 @@ services:
       - ./my-dynamic-scheduler/:/usr/app
       - /usr/app/node_modules
     depends_on:
-      - scheduler-api
+      - server
     ports:
       - "3000:3000"
     networks:
