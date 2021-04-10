@@ -20,7 +20,6 @@ import PublicRoute from './PublicRoute';
 */
 
 const Main = () => {
-    console.log(localStorage.getItem('auth'));
     return (
         <Switch>
             <PublicRoute restricted={false} component={Login} path='/' exact/>

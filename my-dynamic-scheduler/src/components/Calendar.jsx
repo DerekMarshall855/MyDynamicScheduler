@@ -142,7 +142,6 @@ class Calendar extends React.Component {
         });
     };
 
-
     /*
       Calendar will rerender once it has both the events and tasks for the current user
     */
