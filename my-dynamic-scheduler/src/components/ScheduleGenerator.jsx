@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import task_api from "../api/task_api.js";
 import event_api from "../api/event_api.js";
-//import {parseISO, format, addMinutes, getMinutes, getHours} from "date-fns";
+import {parseISO, format, addMinutes} from "date-fns";
 
-class ScheduleGenerator extends React.Component{
+class ScheduleGenerator extends React.Component {
     constructor() {
         super();
         this.state = {
             todayDate: new Date(),
+            startTime: "",
+            endTime: "",
             tasks: [],
-            events: []
+            events: [],
+            displayedSchedule: "",
         };   
+        
       }
 
     componentDidMount = async () => {
@@ -37,115 +41,160 @@ class ScheduleGenerator extends React.Component{
         }
     }
 
-    displayDaySchedule = (e) => {
-        e.preventDefault();
-        console.log("Clicked display");
-        this.schedule();
-    }
-
-    // getTimes = (e, arg) => {
-    //     if (arg === "startTime"){
+    // handleStartTime = (e) => {
+    //         e.preventDefault();
     //         this.setState({startTime: e.target.value});
-    //         console.log("Got start time: " + this.state.startTime);
-    //     }
-    //     else if (arg === "endTime"){
-    //         this.setState({endTime: e.target.value});
-    //         console.log("Got end time: " + this.state.endTime);
-    //     }
-    //     else if (arg === "startDate"){
-    //         this.setState({startDate: e.target.value})
-    //         console.log("Got date: " + this.state.startDate);
-    //     }
-
     // }
 
-    schedule() {
+    // handleEndTime= (e) => {
+    //     e.preventDefault();
+    //     this.setState({endTime: e.target.value})
+    // }
+    // displayDaySchedule = (e) => {
+    //     e.preventDefault();
+    //     console.log("Clicked display");
+    //     this.schedule();
+    // }
 
-        let tasks = this.state.tasks;
 
-        tasks.sort(function(a,b){
-            let taskA = a.difficulty;
-            let taskB = b.difficulty;
+    scheduler = (e) => {
+        e.preventDefault();
+  
+       let tasks = this.state.tasks;
+       let events = this.state.events;
 
-            if(taskA.localeCompare(taskB) === 0) {
-                return 0;
-            }
-            else if(taskA.localeCompare("easy") === 0) {
-                return -1;
-            } 
-            else if(taskB.localeCompare("easy") === 0) {
-                return 1;
-            } 
-            else if(taskA.localeCompare("medium") === 0) {
-                return -1;
-            } 
-            else if(taskB.localeCompare("medium") === 0) {
-                return 1;
-            } 
+       tasks.sort(function(a,b){
+        let taskA = a.difficulty;
+        let taskB = b.difficulty;
+        let taskC = a.due_date;
+        let taskD = b.due_date;
+
+        if (taskC < taskD){
+            return -1;
+        }
+        else if(taskC > taskD){
+            return 1;
+        }
+        else if(taskA.localeCompare(taskB) === 0) {
+            return 0;
+        }
+        else if(taskA.localeCompare("easy") === 0) {
+            return -1;
+        } 
+        else if(taskB.localeCompare("easy") === 0) {
+            return 1;
+        } 
+        else if(taskA.localeCompare("medium") === 0) {
+            return -1;
+        } 
+        else if(taskB.localeCompare("medium") === 0) {
+            return 1;
+        } 
+        return 0;
         });
 
-        console.log(tasks);
+        let schedule =[];
+        let date = this.state.todayDate;
+        let currentDate = date.toISOString().split('T')[0];
+        
+        
+        // let startTime = this.state.startTime;
+        // console.log(startTime);
+        // let endTime = this.state.endTime;
+        // console.log(endTime);
+        let startTime = "08:30";
+        let endTime ="18:00";
+        let fullStartTime = currentDate + 'T' + startTime + ":00";
+        let dateObj = parseISO(fullStartTime);
+        let timeFormat = "HH:mm";
+        let tempEndTime = format(dateObj, timeFormat);
+        let timeAdded = "";
+        let slot = [];
+        let todayEvents = [];
+    
+        for (let j = 0; j < events.length ; j++){
+            if (events[j].date === currentDate){
+                todayEvents.push(events[j]);
+            }
+        
+        }
+        for (let j = 0; j < todayEvents.length; j ++){
+                
+            let eventStartTime = currentDate + 'T' + todayEvents[j].time+ ":00";
+            
+            let dateObjEvent = parseISO(eventStartTime);
+            timeAdded = addMinutes(dateObjEvent, parseInt(todayEvents[j].duration));
+
+            //formate the date object into standard hh:mm time
+            tempEndTime = format(timeAdded, timeFormat);
+
+            schedule.push(todayEvents[j].time + "-" + tempEndTime);
+            schedule.push(" ");
+            schedule.push(todayEvents[j].title);
+            schedule.push("|");
+            
+        }
+
+        for (let i = 0; i < tasks.length ; i++){
+        
+
+            console.log(schedule);
+
+            //start time as date object time plus duration in minutes eg. Thurs April 8 11:30:00
+            timeAdded = addMinutes(dateObj, parseInt(tasks[i].duration));
+
+            //dateObj now end time Thurs April 8 12:30:00
+            dateObj = timeAdded;
+
+            //formate the date object into standard hh:mm time 12:30
+            tempEndTime = format(dateObj, timeFormat);
+
+            if (tempEndTime >= endTime){
+                break;
+            }
+            else if(i < todayEvents[i].length)
+                if (format((addMinutes(dateObj, parseInt(tasks[i].duration))), timeFormat) < todayEvents[i].time ){
+                    index = schedule.indexOf(todayEvents[i].title);
+                    schuedule.splice()
+                }
+            // else { 
+            //     //startTime is old formattedTime (end time of prev) 
+            //     schedule.push(tasks[j].time + "-" + tempEndTime);
+            //     schedule.push(" ");
+            //     schedule.push(tasks[i].title);
+            //     schedule.push("|");
+  
+            //     //change end task time to new start time
+            //     startTime = tempEndTime;
+            // }
+                
+        }
+        
+        this.setState({displayedSchedule: schedule}); 
         
     }
-
-    renderTasks = () =>{
-
-    }
-        
-
-        // let startTime = this.state.startDate + 'T' + this.state.startTime +":00";
-        // let endTime = this.state.startDate + 'T' + this.state.endTime + ":00";
-        // let todayDate = parseISO(startTime);
-        // let end = parseISO(endTime);
-
-        // let startHour = getHours(todayDate);
-        // let endHour = getHours(end);
-        // let duration = (endHour - startHour) * 60;
-                    
-
-        // if (getMinutes(end) !== 0){
-        //     duration += getMinutes(end);
-        // }
-
-        // const timeFormat = "HH:mm";
-        // let times = [];
-
-        // for (let i = 30; i < duration; i+=30){
-        //     let formattedTime = format(todayDate, timeFormat);
-        //     times.push(formattedTime);
-        //     todayDate = addMinutes(todayDate, 30);   
-        // }
-
-        // console.log(times);
-        
-        // return times;
-        
 
     
     render = () =>{
-        if (typeof this.state.events === 'string' || typeof this.state.tasks === 'string' ) {
-            return (
-              <div></div>
-            );
-          } 
-          else {
-            return (
-                <div className="ScheduleGenerator">
-                    <form onSubmit={this.displayDaySchedule}>
-                        {/* <label>Date you want to make the schedule for: </label>
-                        <input type="date" name="startDate" onChange={ (e) => this.getTimes(e, 'startDate')}/>
+        return (
+            <div className="ScheduleGenerator">
+            <h1>Schedule for the day!</h1>
+                <form>
+{/* 
+                    <label>Start time: </label>
+                    <input type="time" name="startTime"  onChange={this.handleStartTime}/>
+                    
+                    <label>End time: </label>
+                    <input type="time" name="endTime" onChange={this.handleEndTime}/> */}
 
-                        <label>Start time: </label>
-                        <input type="time" name="startTime"  onChange={ (e) => this.getTimes(e, 'startTime')}/>
-                        
-                        <label>End time: </label>
-                        <input type="time" name="endTime" onChange={ (e) => this.getTimes(e, 'endTime')}/> */}
-                        <button type="submit">Generate Your Schedule For Today!</button>
-                    </form>
-                    <p className="schedule"></p>
-                </div>
-            );
-        }
+                    <button type="submit" onClick={this.scheduler}>Generate Your Schedule For Today!</button>
+                </form>
+                <p>{this.state.displayedSchedule}</p>
+
+            <p>This schedule displays the tasks that are due first and listed from easiest to hardest.</p>           
+            </div>
+        );
+    
     }
 
     
