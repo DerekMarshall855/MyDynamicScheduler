@@ -102,6 +102,7 @@ class EventList extends React.Component {
 
         return (
             <div>
+                <h1>Events</h1>
                 {showTable && (
                     <ReactTable
                         data={events}

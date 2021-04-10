@@ -14,8 +14,14 @@ class CalendarPage extends React.Component {
             <div className="CalendarPage">
                 <Header />
                 <NavBar />
-                <AddEvent />
-                <AddTask />
+                <div className="addEventsTasks">
+                    <div className="add-container event">
+                        <AddEvent />
+                    </div>
+                    <div className="add-container task"> 
+                        <AddTask />
+                    </div>
+                </div>
                 <Calendar />
             </div>
         );
