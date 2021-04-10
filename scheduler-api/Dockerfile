@@ -14,6 +14,6 @@ RUN npm install --silent
 # Copy app source code
 COPY . .
 
-# Use port 8080
+# Use port 9000
 CMD ["node", "index.js"]
-EXPOSE 8080
+EXPOSE 9000
