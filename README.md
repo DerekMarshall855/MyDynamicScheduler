@@ -28,4 +28,4 @@ The program was originally built for CP476 - Internet Computing course at Wilfri
 ## Resources
 - react-router-dom
 - date-fns
--
+- react - table6

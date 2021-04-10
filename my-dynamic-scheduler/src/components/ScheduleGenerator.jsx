@@ -13,8 +13,8 @@ class ScheduleGenerator extends React.Component{
         this.state = {
             user: localStorage.getItem('username'),
             todayDate: new Date(),
-            startTime: "",
-            endTime: "",
+            startTime: "08:30",
+            endTime: "20:00",
             tasks: [],
             events: [],
             displayedSchedule: localStorage.getItem('schedule'),
@@ -44,6 +44,15 @@ class ScheduleGenerator extends React.Component{
         } catch {
             console.log("There are no events in the db");
         }
+    }
+
+    handleStartTime = (e) => {
+        e.preventDefault();
+        this.setState({startTime: e.target.value});
+    }
+    handleEndTime = (e) => {
+        e.preventDefault();
+        this.setState({endTime: e.target.value});
     }
 
     insertAt = (array, index, ...elementsArray) => {
@@ -102,12 +111,12 @@ class ScheduleGenerator extends React.Component{
         let currentDate = date.toISOString().split('T')[0];
         
         
-        // let startTime = this.state.startTime;
-        // console.log(startTime);
-        // let endTime = this.state.endTime;
-        // console.log(endTime);
-        let startTime = "08:30";
-        let endTime ="18:00";
+        let startTime = this.state.startTime;
+        console.log(startTime);
+        let endTime = this.state.endTime;
+        console.log(endTime);
+        // let startTime = "08:30";
+        // let endTime ="18:00";
         let fullStartTime = currentDate + 'T' + startTime + ":00";
         let dateObj = parseISO(fullStartTime);
         let timeFormat = "HH:mm";
@@ -191,7 +200,10 @@ class ScheduleGenerator extends React.Component{
                 
         }
         //Function to convert schedule to printable array
-        this.createScheduleString(schedule);
+        if (schedule.length > 0){
+          this.createScheduleString(schedule);  
+        }
+        
     }
 
     
@@ -200,18 +212,17 @@ class ScheduleGenerator extends React.Component{
             <div className="ScheduleGenerator">
             <h1>Schedule for the day!</h1>
                 <form>
-{/* 
                     <label>Start time: </label>
                     <input type="time" name="startTime"  onChange={this.handleStartTime}/>
                     
                     <label>End time: </label>
-                    <input type="time" name="endTime" onChange={this.handleEndTime}/> */}
+                    <input type="time" name="endTime" onChange={this.handleEndTime}/>
 
                     <button type="submit" onClick={this.scheduler}>Generate Your Schedule For Today!</button>
                 </form>
                 <p>{this.state.displayedSchedule}</p>
 
-            <p>This schedule displays the tasks that are due first and listed from easiest to hardest.</p>           
+            <p>This schedule displays the tasks that are due first and listed from easiest to hardest. It also includes the events you have scheduled for the day.</p>           
             </div>
         );
     
