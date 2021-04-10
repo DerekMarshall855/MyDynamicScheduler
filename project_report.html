@@ -1,47 +1,108 @@
 <h1 id="project-report">Project Report</h1>
 <p>Author: Rebecca Knezy, Derek Marshall, Joanne Bui</p>
 <p>Date: April 10, 2021</p>
-<h2 id="login-page">Login Page</h2>
+<h2 id="p2.1-client-side-component-ui">P2.1 Client Side Component &amp; UI</h2>
 <figure>
 <img src="images/login.png" alt="Login Page" width="600" /><figcaption>Login Page</figcaption>
 </figure>
 <figure>
-<img src="images/login_fail.png" alt="Incorrect Login" width="600" /><figcaption>Incorrect Login</figcaption>
-</figure>
-<h2 id="sign-up-page">Sign Up Page</h2>
-<figure>
 <img src="images/signup.png" alt="Signup Page" width="600" /><figcaption>Signup Page</figcaption>
 </figure>
-<h2 id="home-page">Home Page</h2>
 <figure>
 <img src="images/home.png" alt="Home Page" width="600" /><figcaption>Home Page</figcaption>
 </figure>
-<h2 id="monthly-calendar-display">Monthly Calendar Display</h2>
 <figure>
 <img src="images/calendar.png" alt="Calendar with Task and Event Forms Filled" width="600" /><figcaption>Calendar with Task and Event Forms Filled</figcaption>
 </figure>
-<h2 id="task-and-event-form">Task and Event Form</h2>
-<figure>
-<img src="images/task_event_added.png" alt="Task and Event Added" width="600" /><figcaption>Task and Event Added</figcaption>
-</figure>
-<p>##Edit Calendar</p>
 <figure>
 <img src="images/edit_calendar.png" alt="Edit Calendar" width="600" /><figcaption>Edit Calendar</figcaption>
+</figure>
+<figure>
+<img src="images/schedule_generated.png" alt="Schedule Generator" width="600" /><figcaption>Schedule Generator</figcaption>
+</figure>
+<figure>
+<img src="images/logout.png" alt="Option to Log Out" width="600" /><figcaption>Option to Log Out</figcaption>
+</figure>
+<h2 id="p2.2-server-side-cgi-components">P2.2 Server side CGI components</h2>
+<figure>
+<img src="images/add_event_component.png" alt="Processes Event Form" width="600" /><figcaption>Processes Event Form</figcaption>
+</figure>
+<figure>
+<img src="images/add_task_component.png" alt="Processes Task Form" width="600" /><figcaption>Processes Task Form</figcaption>
+</figure>
+<figure>
+<img src="images/calendar_component.png" alt="Creates Calendar" width="600" /><figcaption>Creates Calendar</figcaption>
+</figure>
+<figure>
+<img src="images/event_list_component.png" alt="Processes changes to Event List" width="600" /><figcaption>Processes changes to Event List</figcaption>
+</figure>
+<figure>
+<img src="images/tasklist_component.png" alt="Processes changes to Task List" width="600" /><figcaption>Processes changes to Task List</figcaption>
+</figure>
+<figure>
+<img src="images/schedule_generator_component.png" alt="Generates Schedule" width="600" /><figcaption>Generates Schedule</figcaption>
+</figure>
+<figure>
+<img src="images/login_component.png" alt="Processes Login Form" width="600" /><figcaption>Processes Login Form</figcaption>
+</figure>
+<figure>
+<img src="images/signup_component.png" alt="Processes Signup Form" width="600" /><figcaption>Processes Signup Form</figcaption>
+</figure>
+<h2 id="p2.3-database-tier-design-data-usage">P2.3 Database Tier Design, Data, Usage</h2>
+<figure>
+<img src="images/mongodb.png" alt="Mongodb mydynamicscheduler Database" width="600" /><figcaption>Mongodb mydynamicscheduler Database</figcaption>
+</figure>
+<h3 id="collections-in-mydynamicscheduler">Collections in mydynamicscheduler</h3>
+<figure>
+<img src="images/db_users.png" alt="Users Layout" width="600" /><figcaption>Users Layout</figcaption>
+</figure>
+<p>To save accounts when users make an account through the sign up page.</p>
+<figure>
+<img src="images/db_events.png" alt="Events Layout" width="600" /><figcaption>Events Layout</figcaption>
+</figure>
+<p>To save events when users add an event through the form in “Calendar” page.</p>
+<figure>
+<img src="images/db_tasks.png" alt="Tasks Layout" width="600" /><figcaption>Tasks Layout</figcaption>
+</figure>
+<p>To save events when users add a task through the form in “Calendar” page.</p>
+<p>Accessed when creating the monthly calendars. If there is an event or task, it will be shown in the corresponding cell on the calendar. The schedule generator also retrieves tasks from the collection for certain days.</p>
+<h2 id="p2.4-new-features-and-tools">P2.4 New Features and Tools</h2>
+<p>When signing up, we use the SHA-1 hash function to encrypt passwords before saving them into the database.</p>
+<p>For logins, the user and password have to be authenticated before the user is granted access. When the information does not match what is in the users collection, a message will appear.</p>
+<figure>
+<img src="images/login_fail.png" alt="Incorrect Login" width="600" /><figcaption>Incorrect Login</figcaption>
+</figure>
+<p>In the Calendar page, users can add a task or event by filling out the form.</p>
+<p>When editing tasks and events, the chosen one will be retrieved from events/tasks collection and removed from the database.</p>
+<figure>
+<img src="images/task_before_delete.png" alt="Task existing in Collection Before Deletion" width="600" /><figcaption>Task existing in Collection Before Deletion</figcaption>
 </figure>
 <figure>
 <img src="images/delete_task.png" alt="Delete Task" width="600" /><figcaption>Delete Task</figcaption>
 </figure>
 <figure>
-<img src="images/task_deleted.png" alt="Deleted Task is Gone from Calendar" width="600" /><figcaption>Deleted Task is Gone from Calendar</figcaption>
+<img src="images/task_gone.png" alt="Task Deleted From Collection" width="600" /><figcaption>Task Deleted From Collection</figcaption>
 </figure>
-<p>##Schedule Generator</p>
+<p>Scheduling algorithm retrieves tasks from the database for the day and sorts them according to difficulty and duration.</p>
 <figure>
-<img src="images/t1.1_2.png" alt="T1.1 File Upload" width="600" /><figcaption>T1.1 File Upload</figcaption>
+<img src="images/schedule_generated.png" alt="Schedule Generated" width="600" /><figcaption>Schedule Generated</figcaption>
 </figure>
-<p>##Log Out Page</p>
+<h2 id="p2.5-problem-solving-algorithms">P2.5 Problem Solving Algorithms</h2>
+<p>During Signup, authentication is needed to make sure there will not be any accounts with the same username</p>
 <figure>
-<img src="images/logout.png" alt="Option to Log Out" width="600" /><figcaption>Option to Log Out</figcaption>
+<img src="images/signup_authentication.png" alt="Signup Authentication" width="600" /><figcaption>Signup Authentication</figcaption>
 </figure>
+<p>Login Authentication that was discussed in the section above.</p>
+<figure>
+<img src="images/login_auth.png" alt="Login Authentication" width="600" /><figcaption>Login Authentication</figcaption>
+</figure>
+<p>Scheduling algorithm to organize users’ tasks for the day. Refer to ScheduleGenerator.jsx. The algorithm will take in what time the user wants to start and stop doing work.</p>
+<h2 id="p2.6-robustness-and-efficiency">P2.6 Robustness and Efficiency</h2>
+<p>We used Mongoose and Axios to access our database easily and make changes efficiently.</p>
+<figure>
+<img src="images/event_api.png" alt="Event_api.js" width="600" /><figcaption>Event_api.js</figcaption>
+</figure>
+<p>The user can check the “Remember Me” box so their account details will be saved for the day and they will not have to sign in repeatedly.</p>
 <p><strong>References</strong></p>
 <ol class="incremental" type="1">
 <li><a href="a5.html">HBF, CP476 Assignment 5</a></li>
