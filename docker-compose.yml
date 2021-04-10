@@ -7,12 +7,12 @@ services:
       dockerfile: Dockerfile
     image: mydynamicscheduler-server
     container_name: mydynamicscheduler-node-server
-    command: /usr/src/app/node index.js
+    command: node index.js
     volumes:
       - ./scheduler-api/:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - "8080:8080"
+      - "9000:9000"
     depends_on:
       - mongo
     environment:
