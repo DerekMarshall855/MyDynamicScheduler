@@ -21,6 +21,6 @@ The program was originally built for CP476 - Internet Computing course at Wilfri
 - Program should be running on localhost:3000 with api running on localhost:9000
 
 ### Authors
-- Derek Marshall (Backend)
-- Rebecca Knezy (Frontend)
-- Joanne Bui (Alg)
+- Derek Marshall (Backend Lead)
+- Rebecca Knezy (Frontend Lead)
+- Joanne Bui (Scheduling Algorithm Lead)
