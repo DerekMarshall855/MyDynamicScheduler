@@ -26,7 +26,7 @@ Date: April 10, 2021
 
 ![Task and Event Added](images/task_event_added.png){width=600px}
 
-##Edit Calendar 
+## Edit Calendar 
 
 ![Edit Calendar](images/edit_calendar.png){width=600px}
 
@@ -34,7 +34,7 @@ Date: April 10, 2021
 
 ![Deleted Task is Gone from Calendar](images/task_deleted.png){width=600px}
 
-##Schedule Generator
+## Schedule Generator
 
 ![T1.1 File Upload](images/t1.1_2.png){width=600px}
 
@@ -47,5 +47,5 @@ Date: April 10, 2021
 
 **References**
 
-1. [HBF, CP476 Assignment 5](a5.html)
+1. [HBF, CP476 Assignment template](a5.html)
 2. Add your references used in developing your solutions. 

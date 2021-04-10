@@ -351,16 +351,26 @@ color: black;
   flex-basis: calc(100%/7);
   width: calc(100%/7);
 }
-
+/*Edit events and tasks*/
+.EventList h1{
+  color: var(--main-color);
+}
+.TaskList h1{
+  color: var(--main-color);
+}
 /*Schedule*/
 .ScheduleGenerator .scheduleDisplay {
-  border:10px double var(--main2-color);
+  border:10px double var(--main3-color);
 }
-
+.ScheduleGenerator h1{
+  text-align: center;
+}
 /*Logout form*/
 
 .Logout-container{
   text-align: center;
-  background-color: var(--main4-color);
   padding: 10px 200px 100px 200px;
+}
+.Logout-container h1{
+  color: var(--main-color);
 }

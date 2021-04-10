@@ -106,7 +106,7 @@ class TaskList extends React.Component {
         }
 
         return (
-            <div>
+            <div className="TaskList">
                 <h1>Tasks</h1>
                 {showTable && (
                     <ReactTable

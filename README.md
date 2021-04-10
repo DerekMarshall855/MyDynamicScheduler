@@ -5,12 +5,12 @@ This is a web app built on the MERN (Mongodb, Express, React, Node) stack for ke
 The program was originally built for CP476 - Internet Computing course at Wilfrid Laurer University.
 
 ## Features
-- Adding tasks and events
+- adding tasks and events
 - adding users through signup
 - private and public routing
 - apis for the user event and task collections
 - password hashing
-- generating a schedule (using events and tasks)
+- generating a daily schedule (using events and tasks)
 - generated calendar with events/tasks in each day
 
 ## How to deploy
@@ -28,4 +28,7 @@ The program was originally built for CP476 - Internet Computing course at Wilfri
 ## Resources
 - react-router-dom
 - date-fns
-- react - table6
+- react-table-6
+- styled-components
+- axios
+- js-sha1

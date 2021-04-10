@@ -105,7 +105,7 @@ class EventList extends React.Component {
 
         //ReactTable takes data, column format, loading and optional options
         return (
-            <div>
+            <div className="EventList">
                 <h1>Events</h1>
                 {showTable && (
                     <ReactTable

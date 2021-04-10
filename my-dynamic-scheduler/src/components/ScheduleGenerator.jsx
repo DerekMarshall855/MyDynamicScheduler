@@ -213,6 +213,7 @@ class ScheduleGenerator extends React.Component{
         return (
             <div className="ScheduleGenerator">
             <h1>Schedule for the day!</h1>
+            <p>This schedule displays the tasks that are due first, listed from easiest to hardest. It also includes the events you have scheduled for the day.</p>
             <p>If no custom time is inserted a schedule will generate from 8:30 to 20:00.</p>
                 <form>
                 <table>
@@ -234,9 +235,7 @@ class ScheduleGenerator extends React.Component{
                     <button type="submit" onClick={this.scheduler}>Generate Your Schedule For Today!</button>
                 </form>
                 <div className="scheduleDisplay"><p>{this.state.displayedSchedule}</p></div>
-                
-
-            <p>This schedule displays the tasks that are due first and listed from easiest to hardest. It also includes the events you have scheduled for the day.</p>           
+           
             </div>
         );
     
