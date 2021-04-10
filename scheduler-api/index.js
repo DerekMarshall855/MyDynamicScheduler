@@ -18,10 +18,6 @@ app.use(bodyParser.json())
 
 db.on('error', console.error.bind(console, 'MongoDB connection error: '));
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!')
-// })
-
 // API USE CALLS
 app.use('/user_api', userRouter);
 app.use('/event_api', eventRouter);

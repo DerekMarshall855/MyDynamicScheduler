@@ -1,5 +1,9 @@
 const Task = require('../models/task_model');
 
+/*
+    Controller to define all task functions
+*/
+
 //Creates event from json
 createTask = (req, res) => {
     const body = req.body;
@@ -49,9 +53,9 @@ deleteTask = async (req, res) => {
     }).catch(err => console.log(err));
 }
 
-//Gets all tasks
+//Gets all tasks of user
 getTasks = async (req, res) => {
-    await Task.find({}, (err, tasks) => {
+    await Task.find({user: req.params.username}, (err, tasks) => {
         if (err) {
             return res.status(400).json({ success: false, error: err });
         }

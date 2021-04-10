@@ -3,10 +3,15 @@ import task_api from "../api/task_api.js";
 import event_api from "../api/event_api.js";
 //import {parseISO, format, addMinutes, getMinutes, getHours} from "date-fns";
 
+/*
+    Generates scheduler from event and task user data
+*/
+
 class ScheduleGenerator extends React.Component{
     constructor() {
         super();
         this.state = {
+            user: localStorage.getItem('username'),
             todayDate: new Date(),
             tasks: [],
             events: []
@@ -15,7 +20,7 @@ class ScheduleGenerator extends React.Component{
 
     componentDidMount = async () => {
         try {
-            await task_api.getTasks().then(res => {
+            await task_api.getTasks(this.state.user).then(res => {
                 //Search successful, res is now a list of tasks
                 //console.log(res.data);
                 this.setState({tasks: res.data.data});
@@ -26,7 +31,7 @@ class ScheduleGenerator extends React.Component{
             console.log("There are no tasks in the db");
         }
         try {
-            await event_api.getEvents().then(res => {
+            await event_api.getEvents(this.state.user).then(res => {
                 //Search successful, res is now a list of tasks
                 //console.log(res.data);
                 this.setState({events: res.data.data});

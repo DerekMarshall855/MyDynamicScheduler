@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 import Home from '../pages/Home';
 import Login from '../pages/Login';
@@ -9,19 +9,31 @@ import ScheduleGeneratorPage from '../pages/ScheduleGeneratorPage';
 import Logout from '../pages/Logout';
 import EditCalendar from '../pages/EditCalendar';
 
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+
+/*
+    Main router for program, contains all routes
+    Uses both public and private routes
+    Private - Accessible only if user logged in
+    Public - Accessible to everyone
+*/
 
 const Main = () => {
+    console.log(localStorage.getItem('auth'));
     return (
         <Switch>
-            <Route exact path='/' component={Login}></Route>
-            <Route exact path='/home' component={Home}></Route>
-            <Route exact path='/signuppage' component={SignupPage}></Route>
-            <Route exact path='/calendar' component={CalendarPage}></Route>
-            <Route exact path='/logout' component={Logout}></Route>
-            <Route exact path='/generate-schedule' component={ScheduleGeneratorPage}></Route>
-            <Route exact path='/edit-calendar' component={EditCalendar}></Route>
+            <PublicRoute restricted={false} component={Login} path='/' exact/>
+            <PrivateRoute component={Home} path="/home" exact/>
+            <PublicRoute restricted={false} component={SignupPage} path='/signuppage' exact/>
+            <PrivateRoute component={CalendarPage} path="/calendar" exact/>
+            <PrivateRoute component={Logout} path="/logout" exact/>
+            <PrivateRoute component={ScheduleGeneratorPage} path="/generate-schedule" exact/>
+            <PrivateRoute component={EditCalendar} path="/edit-calendar" exact/>
         </Switch>
     );
 }
+
+
 
 export default Main;

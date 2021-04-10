@@ -6,7 +6,6 @@ import AddEvent from '../components/AddEvent.jsx';
 import AddTask from '../components/AddTask.jsx';
 
 
-
 class CalendarPage extends React.Component {
 
     render() {
