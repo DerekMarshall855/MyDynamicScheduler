@@ -40,21 +40,21 @@ Date: April 10, 2021
 
 ![T1.1 File Upload](images/t1.1_2.png){width=600px}
 
-##Log Out Page
+## Log Out Page
 
 ![Option to Log Out](images/logout.png){width=600px}
 
 
 
-##P2.2 Server side CGI components
+## P2.2 Server side CGI components
 
 
 
-##P2.3 Database Tier Design, Data, Usage
+## P2.3 Database Tier Design, Data, Usage
 
 ![Mongodb mydynamicscheduler Database](images/mongodb.png){width=600px}
 
-##Collections in mydynamicscheduler
+## Collections in mydynamicscheduler
 
 ![Users Layout](images/db_users.png){width=600px}
 To save accounts when users make an account through the sign up page.
