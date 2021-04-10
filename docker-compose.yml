@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: mydynamicscheduler-server
     container_name: mydynamicscheduler-node-server
-    command: /usr/src/app/node server.js
+    command: /usr/src/app/node index.js
     volumes:
       - ./scheduler-api/:/usr/src/app
       - /usr/src/app/node_modules
