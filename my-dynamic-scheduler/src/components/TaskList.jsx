@@ -55,9 +55,7 @@ class TaskList extends React.Component {
                 });
             });
         } catch {
-            this.setState({
-                taskLoading:false,
-                tasks: [{"_id":"","title":"","due_date":"","difficulty":"","duration":""}],
+            this.setState({taskLoading:false,
             });
             console.log("No tasks");
         }
