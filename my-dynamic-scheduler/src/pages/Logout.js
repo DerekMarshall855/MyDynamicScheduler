@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar.jsx';
 import Header from '../components/Header.jsx';
+import { logOut } from '../js_functions/IsLogin';
 import { withRouter } from 'react-router-dom';
 
 
@@ -8,6 +9,7 @@ class Logout extends React.Component {
 
     handleLogout = (e) => {
         e.preventDefault();
+        logOut();
         this.props.history.push('/');
     }
 

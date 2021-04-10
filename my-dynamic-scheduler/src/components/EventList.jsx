@@ -1,16 +1,18 @@
 import React from "react";
 import event_api from "../api/event_api.js";
-import ReactTable from "react-table-6";
+import ReactTable from "react-table-6"; // Legacy Component, current version (react-table-7) was much more difficult to work with in crunch
 import styled from "styled-components";
 
-import 'react-table-6/react-table.css';
+import 'react-table-6/react-table.css'; // Legacy Component, Default css that comes with react-table-6
 
+//Used to create stylized div to act as a button for deletion, unecessary but looks good
 const Delete = styled.div`
     color: #ff0000;
     cursor: pointer;
 `
 
 class EventDelete extends React.Component {
+    //Delete button render and event
     eventDelete = event => {
         event.preventDefault();
 
@@ -30,10 +32,11 @@ class EventDelete extends React.Component {
 }
 
 class EventList extends React.Component {
-
+    //Lists all of the events for a given user
     constructor(props) {
         super(props);
         this.state = {
+            user: localStorage.getItem('username'),
             events: [],
             columns: [],
             eventLoading: false
@@ -44,7 +47,7 @@ class EventList extends React.Component {
         this.setState({eventLoading: true});
 
         try {
-            await event_api.getEvents().then(res => {
+            await event_api.getEvents(this.state.user).then(res => {
                 this.setState({
                     events: res.data.data,
                     eventLoading: false
@@ -59,7 +62,7 @@ class EventList extends React.Component {
 
     render () {
         const { events, eventLoading } = this.state;
-
+        //Define columns for table: Title, Date, Time, Duration and function cell for deletion
         const columns = [
             {
                 Header: 'Title',
@@ -94,11 +97,13 @@ class EventList extends React.Component {
                 }
             }
         ]
+        //Logic to only show table was info is loading from db
         let showTable = true;
         if (!events.length) {
             showTable = false;
         }
 
+        //ReactTable takes data, column format, loading and optional options
         return (
             <div>
                 <h1>Events</h1>

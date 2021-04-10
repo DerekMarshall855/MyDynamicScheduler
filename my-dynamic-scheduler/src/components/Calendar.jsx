@@ -2,25 +2,30 @@ import React from "react";
 import task_api from "../api/task_api.js";
 import event_api from "../api/event_api.js";
 import dayCheck from "../js_functions/DayCheck.js";
-import { subMonths, addMonths, isSameMonth, startOfWeek, endOfWeek, addDays, format, startOfMonth, endOfMonth, isSameDay} from "date-fns";
+import { subMonths, addMonths, isSameMonth, startOfWeek, endOfWeek, addDays, format, startOfMonth, endOfMonth, isSameDay } from "date-fns";
+
+/*
+  Component that draws the calendar
+*/
 
 class Calendar extends React.Component {
 
     constructor() {
       super();
       this.state = {
+        user: localStorage.getItem('username'), //Get current user
         currentMonth: new Date (),
         selectedDate: new Date (),
-        tasks: [{"title":"","due_date":"","difficulty":"","duration":""}],
+        tasks: [{"title":"","due_date":"","difficulty":"","duration":""}], //Set default tasks and events
         events: [{"title":"","date":"","time":"","duration":""}]
       }; 
     }
 
     componentDidMount = async () => {
+      // When ready calls task and event api, reloads calendar with events and tasks inserted
       try {
-          await task_api.getTasks().then(res => {
+          await task_api.getTasks(this.state.user).then(res => {
               //Search successful, res is now a list of tasks
-              //console.log(res.data);
               this.setState({tasks: res.data.data});
 
               
@@ -29,9 +34,8 @@ class Calendar extends React.Component {
         console.log("There are no tasks in the db");
       }
       try {
-        await event_api.getEvents().then(res => {
+        await event_api.getEvents(this.state.user).then(res => {
             //Search successful, res is now a list of tasks
-            //console.log(res.data);
             this.setState({events: res.data.data});
 
         });
@@ -40,6 +44,7 @@ class Calendar extends React.Component {
       }
     }
 
+    //Calendar header
     renderHeader = () => {
         const dateFormat = "MMMM yyyy";
         return (
@@ -60,6 +65,7 @@ class Calendar extends React.Component {
             </div>
     );
   }
+    //Calendar Day Row
     renderDays = () => {
         const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday"];
         const days = [];
@@ -73,8 +79,8 @@ class Calendar extends React.Component {
         return <div className="days row">{days}</div>;
     }
     
+    //Calendar Individual Cells
     renderCells = () => {
-        //console.log(this.state);
         const { currentMonth, selectedDate } = this.state;
 
         //First Day of the month eg. April 1
@@ -97,7 +103,7 @@ class Calendar extends React.Component {
 
         while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
-            let temp = dayCheck(this.state.events, this.state.tasks, day.toISOString().split('T')[0]); //Check tasks/events on this day, creates string for printing
+            let temp = dayCheck(this.state.events, this.state.tasks, day.toISOString().split('T')[0]); //Check tasks/events on this day, creates temp string for printing
             formattedDate = format(day, dateFormat);
             days.push(
             <div
@@ -138,12 +144,9 @@ class Calendar extends React.Component {
 
 
     /*
-      Couldnt do an async render, learned function componentDidMount rerenders when this.state updates.
-      Check if events and tasks are updated to lists, default before fetch they are strings.
-      When both ready, render actual page. Page technically renders 3 times (2 empty divs, 1 actual render), but its the best we could do for now
+      Calendar will rerender once it has both the events and tasks for the current user
     */
     render = () => {
-
         return (
           <div className="calendar">
             {this.renderHeader()}

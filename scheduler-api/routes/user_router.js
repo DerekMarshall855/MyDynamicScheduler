@@ -1,5 +1,9 @@
 const express = require('express');
 
+/*
+    Defines routes for each function of user controller
+*/
+
 const UserCtrl = require('../controllers/user_ctrl');
 
 const router = express.Router();

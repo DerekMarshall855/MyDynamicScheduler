@@ -65,6 +65,7 @@ hr {
 .topnav li {
   display: inline-block;
   background-color: white;
+  font-weight: 400;
   
 }
 
@@ -157,7 +158,17 @@ color: black;
 /*Home page*/
 
 .Home-container {
-  background-color: var(--main4-color);
+  padding: 70px 0;
+  color:black;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.Home-container .header {
+  color: #769fcd;
+  text-align: center;
+  vertical-align: middle;
+  
 }
 
 /*Add tasks and events section*/

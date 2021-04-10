@@ -3,18 +3,7 @@ import { withRouter } from 'react-router-dom';
 import api from '../api/event_api.js';
 
 /*
-HOW TO USE API TO GET ALL EVENTS:
---------------------------------------------------
-import api from api/event_api.js
-Do code:
-    try {
-        await api.getEvents().then(res => {
-            //Search successful, res is now a list of events
-            console.log(res);
-        });
-    } catch {
-        //Whatever we do if there are no tasks currently in db
-    }
+    Component form to add events
 */
 
 class AddEvent extends React.Component {
@@ -22,6 +11,7 @@ class AddEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: localStorage.getItem('username'), //Get current user from localStorage
             title: '',
             date: '',
             time: '',
@@ -50,8 +40,8 @@ class AddEvent extends React.Component {
 
     handleFormSubmit = async (e) => {
         e.preventDefault();
-        var obj = JSON.parse(`{"title":"${this.state.title}", "date":"${this.state.date}", "time":"${this.state.time}", "duration":"${this.state.duration}"}`);
-        //console.log(obj);
+        //Create json object to add to mongo
+        var obj = JSON.parse(`{"user":"${this.state.user}","title":"${this.state.title}", "date":"${this.state.date}", "time":"${this.state.time}", "duration":"${this.state.duration}"}`);
         if(this.state.title.localeCompare('') !== 0 && this.state.date.localeCompare('') !== 0 && this.state.time.localeCompare('') !== 0) {
 
             try {

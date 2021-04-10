@@ -1,6 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+/*
+    NavBar at the top of all private components
+*/
+
 const NavBar = () => {
     return (
         <div className="topnav">

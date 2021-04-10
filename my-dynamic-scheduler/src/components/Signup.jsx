@@ -3,6 +3,10 @@ import { withRouter } from 'react-router-dom';
 import sha1 from 'js-sha1';
 import api from '../api/user_api';
 
+/*
+    Signup form, if successful routes user back to login page
+*/
+
 class Signup extends React.Component {
 
     constructor(props) {
@@ -45,7 +49,7 @@ class Signup extends React.Component {
                                 username: '',
                                 password: ''
                             });
-                            this.props.history.push('/home'); //If authenticated go to home
+                            this.props.history.push('/'); //If authenticated go to home
                         });
                     } catch {
                         window.alert('Error, user not added');
