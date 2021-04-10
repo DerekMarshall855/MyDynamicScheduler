@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import task_api from "../api/task_api.js";
 import event_api from "../api/event_api.js";
 import {parseISO, format, addMinutes} from "date-fns";
@@ -111,9 +111,7 @@ class ScheduleGenerator extends React.Component{
         let fullStartTime = currentDate + 'T' + startTime + ":00";
         let dateObj = parseISO(fullStartTime);
         let timeFormat = "HH:mm";
-        let tempEndTime = format(dateObj, timeFormat);
         let timeAdded = "";
-        let slot = [];
         let todayEvents = [];
     
         for (let j = 0; j < events.length ; j++){
@@ -128,7 +126,7 @@ class ScheduleGenerator extends React.Component{
             let startA = a.startTime;
             let startB = b.startTime;
 
-            if (startA == startB) {
+            if (startA === startB) {
                 return 0;
             }
             else if (startA > startB) {
