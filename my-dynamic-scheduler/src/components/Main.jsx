@@ -22,9 +22,9 @@ import PublicRoute from './PublicRoute';
 const Main = () => {
     return (
         <Switch>
-            <PublicRoute restricted={false} component={Login} path='/' exact/>
+            <PublicRoute component={Login} path='/' exact/>
             <PrivateRoute component={Home} path="/home" exact/>
-            <PublicRoute restricted={false} component={SignupPage} path='/signuppage' exact/>
+            <PublicRoute component={SignupPage} path='/signuppage' exact/>
             <PrivateRoute component={CalendarPage} path="/calendar" exact/>
             <PrivateRoute component={Logout} path="/logout" exact/>
             <PrivateRoute component={ScheduleGeneratorPage} path="/generate-schedule" exact/>
