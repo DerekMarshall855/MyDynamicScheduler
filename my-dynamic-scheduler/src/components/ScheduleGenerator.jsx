@@ -17,7 +17,7 @@ class ScheduleGenerator extends React.Component{
             endTime: "",
             tasks: [],
             events: [],
-            displayedSchedule: "",
+            displayedSchedule: localStorage.getItem('schedule'),
         };   
         
       }
@@ -46,21 +46,20 @@ class ScheduleGenerator extends React.Component{
         }
     }
 
-    // handleStartTime = (e) => {
-    //         e.preventDefault();
-    //         this.setState({startTime: e.target.value});
-    // }
+    insertAt = (array, index, ...elementsArray) => {
+        array.splice(index, 0, ...elementsArray);
+    }
 
-    // handleEndTime= (e) => {
-    //     e.preventDefault();
-    //     this.setState({endTime: e.target.value})
-    // }
-    // displayDaySchedule = (e) => {
-    //     e.preventDefault();
-    //     console.log("Clicked display");
-    //     this.schedule();
-    // }
+    createScheduleString = (schedule) => {
+        let result = [];
 
+        for(let i = 0; i < schedule.length; i++){
+            result.push(`${schedule[i].startTime} - ${schedule[i].endTime} - ${schedule[i].title} | `);
+        }
+        result[result.length-1] = result[result.length-1].slice(0, -3);
+        localStorage.setItem('schedule', result);
+        this.setState({displayedSchedule: result}); 
+    }
 
     scheduler = (e) => {
         e.preventDefault();
@@ -119,64 +118,82 @@ class ScheduleGenerator extends React.Component{
     
         for (let j = 0; j < events.length ; j++){
             if (events[j].date === currentDate){
-                todayEvents.push(events[j]);
+                let temp = parseISO(currentDate + 'T' + events[j].time + ":00");
+                temp = addMinutes(temp, events[j].duration);
+                temp = format(temp, timeFormat);
+                todayEvents.push(JSON.parse(`{"startTime":"${events[j].time}","endTime":"${temp}", "title":"${events[j].title}"}`)); //Add scheduler object
             }
-        
         }
+        todayEvents.sort(function(a,b) { //Sort events to be in order of time
+            let startA = a.startTime;
+            let startB = b.startTime;
+
+            if (startA == startB) {
+                return 0;
+            }
+            else if (startA > startB) {
+                return 1;
+            }
+            else if (startA < startB) {
+                return -1;
+            }
+            return 0;
+        });
         for (let j = 0; j < todayEvents.length; j ++){
                 
-            let eventStartTime = currentDate + 'T' + todayEvents[j].time+ ":00";
-            
-            let dateObjEvent = parseISO(eventStartTime);
-            timeAdded = addMinutes(dateObjEvent, parseInt(todayEvents[j].duration));
-
-            //formate the date object into standard hh:mm time
-            tempEndTime = format(timeAdded, timeFormat);
-
-            schedule.push(todayEvents[j].time + "-" + tempEndTime);
-            schedule.push(" ");
-            schedule.push(todayEvents[j].title);
-            schedule.push("|");
+            schedule.push(todayEvents[j]);
             
         }
+        let count = 0;
+        let scheduleIndex = 0;
+        let i = 0;
+        let tempStartTime = dateObj;
+        while (i < tasks.length){
 
-        for (let i = 0; i < tasks.length ; i++){
-        
+            //console.log(schedule);
 
-            console.log(schedule);
-
-            //start time as date object time plus duration in minutes eg. Thurs April 8 11:30:00
-            timeAdded = addMinutes(dateObj, parseInt(tasks[i].duration));
-
-            //dateObj now end time Thurs April 8 12:30:00
-            dateObj = timeAdded;
-
-            //formate the date object into standard hh:mm time 12:30
-            tempEndTime = format(dateObj, timeFormat);
-
-            if (tempEndTime >= endTime){
+            //Create object that is startTime + task duration
+            timeAdded = addMinutes(tempStartTime, parseInt(tasks[i].duration));
+            timeAdded = format(timeAdded, timeFormat);
+            if (timeAdded > endTime) {
                 break;
-            }
-            else if(i < todayEvents[i].length)
-                if (format((addMinutes(dateObj, parseInt(tasks[i].duration))), timeFormat) < todayEvents[i].time ){
-                    index = schedule.indexOf(todayEvents[i].title);
-                    schuedule.splice()
+            } else if (count > todayEvents.length) { //No more events to worry about
+                let temp = parseISO(currentDate + 'T' + timeAdded + ":00");
+                temp = format(temp, timeFormat);
+                let taskObj = JSON.parse(`{"startTime":"${format(tempStartTime, timeFormat)}","endTime":"${temp}", "title":"${tasks[i].title}"}`);
+                if (scheduleIndex > schedule.length-1) {
+                    schedule.push(taskObj); //Push task object to array
+                    scheduleIndex += 1;
+                } else {
+                    this.insertAt(schedule, scheduleIndex, taskObj);
+                    scheduleIndex += 1;
                 }
-            // else { 
-            //     //startTime is old formattedTime (end time of prev) 
-            //     schedule.push(tasks[j].time + "-" + tempEndTime);
-            //     schedule.push(" ");
-            //     schedule.push(tasks[i].title);
-            //     schedule.push("|");
-  
-            //     //change end task time to new start time
-            //     startTime = tempEndTime;
-            // }
+                tempStartTime = parseISO(currentDate + 'T' + taskObj.endTime + ":00");
+                i += 1;
+            } else if (timeAdded > todayEvents[count].startTime) { //Task time exceeds allowed length
+                //change tempStartTime to todayEvents[count].endTime, Increment count by one
+                tempStartTime = parseISO(currentDate + 'T' + todayEvents[count].endTime + ":00");
+                count += 1;
+                scheduleIndex += 1;
+
+            } else { //Task does not conflict with event, add task at index of schedule
+                let temp = parseISO(currentDate + 'T' + timeAdded + ":00");
+                temp = format(temp, timeFormat);
+                let taskObj = JSON.parse(`{"startTime":"${format(tempStartTime, timeFormat)}","endTime":"${temp}", "title":"${tasks[i].title}"}`);
+                if (scheduleIndex > schedule.length-1) {
+                    schedule.push(taskObj); //Push task object to array
+                    scheduleIndex += 1;
+                } else {
+                    this.insertAt(schedule, scheduleIndex, taskObj);
+                    scheduleIndex += 1;
+                }
+                tempStartTime = parseISO(currentDate + 'T' + taskObj.endTime + ":00");
+                i += 1;
+            }
                 
         }
-        
-        this.setState({displayedSchedule: schedule}); 
-        
+        //Function to convert schedule to printable array
+        this.createScheduleString(schedule);
     }
 
     

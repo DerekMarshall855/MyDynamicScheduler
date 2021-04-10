@@ -10,6 +10,7 @@ export const logIn = (name) => {
 export const logOut = () => {
         localStorage.removeItem('auth');
         localStorage.removeItem('username');
+        localStorage.removeItem('schedule');
     }
 export const isLogin = () => {
         if (localStorage.getItem('auth')) {

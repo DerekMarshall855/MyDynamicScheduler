@@ -1,4 +1,5 @@
 import Main from './components/Main.jsx';
+import {Beforeunload} from 'react-beforeunload';
 
 
 
@@ -6,7 +7,13 @@ import Main from './components/Main.jsx';
 function App() {
   return (
     <div className="App">
-      <Main />
+      <Beforeunload onBeforeunload={() => {
+        localStorage.removeItem("username");
+        localStorage.removeItem("auth");
+        localStorage.removeItem("schedule");
+      }}>
+        <Main />
+      </Beforeunload>
     </div>
   );
 }
