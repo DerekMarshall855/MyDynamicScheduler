@@ -19,3 +19,8 @@ The program was originally built for CP476 - Internet Computing course at Wilfri
 - Open seperate command line in my-dynamic-scheduler file, npm install dependencies
 - run command: npm start
 - Program should be running on localhost:3000 with api running on localhost:9000
+
+### Authors
+- Derek Marshall (Backend)
+- Rebecca Knezy (Frontend)
+- Joanne Bui (Alg)
