@@ -83,7 +83,7 @@
 <figure>
 <img src="images/task_gone.png" alt="Task Deleted From Collection" width="600" /><figcaption>Task Deleted From Collection</figcaption>
 </figure>
-<p>Scheduling algorithm retrieves tasks from the database for the day and sorts them according to difficulty and duration.</p>
+<p>Scheduling algorithm retrieves tasks from the database for the day and sorts them according to due date and difficulty.</p>
 <figure>
 <img src="images/schedule_generated.png" alt="Schedule Generated" width="600" /><figcaption>Schedule Generated</figcaption>
 </figure>
@@ -97,14 +97,10 @@
 <img src="images/login_auth.png" alt="Login Authentication" width="600" /><figcaption>Login Authentication</figcaption>
 </figure>
 <p>Scheduling algorithm to organize users’ tasks for the day. Refer to ScheduleGenerator.jsx. The algorithm will take in what time the user wants to start and stop doing work.</p>
+<p>Authentication ensures that if the user is not logged in they cannot access private routes (calendar, edit, logout, home, generate schedule) and if they are logged in they can no longer access public routes (login, signup). We use RouteRedirect to redirect the user.</p>
 <h2 id="p2.6-robustness-and-efficiency">P2.6 Robustness and Efficiency</h2>
 <p>We used Mongoose and Axios to access our database easily and make changes efficiently.</p>
 <figure>
 <img src="images/event_api.png" alt="Event_api.js" width="600" /><figcaption>Event_api.js</figcaption>
 </figure>
 <p>The user can check the “Remember Me” box so their account details will be saved for the day and they will not have to sign in repeatedly.</p>
-<p><strong>References</strong></p>
-<ol class="incremental" type="1">
-<li><a href="a5.html">HBF, CP476 Assignment 5</a></li>
-<li>Add your references used in developing your solutions.</li>
-</ol>

@@ -109,7 +109,8 @@ class ScheduleGenerator extends React.Component{
 
         let schedule =[];
         let date = this.state.todayDate;
-        let currentDate = date.toISOString().split('T')[0];
+        let currentFormat = "yyyy-MM-d"
+        let currentDate = format(date, currentFormat);
         
         
         let startTime = this.state.startTime;
@@ -123,13 +124,16 @@ class ScheduleGenerator extends React.Component{
         let todayEvents = [];
     
         for (let j = 0; j < events.length ; j++){
+            console.log(currentDate, events[j].date);
             if (events[j].date === currentDate){
+                console.log("2");
                 let temp = parseISO(currentDate + 'T' + events[j].time + ":00");
                 temp = addMinutes(temp, events[j].duration);
                 temp = format(temp, timeFormat);
                 todayEvents.push(JSON.parse(`{"startTime":"${events[j].time}","endTime":"${temp}", "title":"${events[j].title}"}`)); //Add scheduler object
             }
         }
+        console.log(todayEvents);
         todayEvents.sort(function(a,b) { //Sort events to be in order of time
             let startA = a.startTime;
             let startB = b.startTime;
