@@ -4,7 +4,7 @@ Author: Rebecca Knezy, Derek Marshall, Joanne Bui
 
 Date: April 10, 2021
 
-Github Link: https://github.com/DerekMarshall855/MyDynamicScheduler
+[Github Link](https://github.com/DerekMarshall855/MyDynamicScheduler)
 
 ## P2.1 Client Side Component & UI
 
