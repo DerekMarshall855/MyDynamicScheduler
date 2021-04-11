@@ -39,6 +39,6 @@ The program was originally built for CP476 - Internet Computing course at Wilfri
 
 
 ## Gifs
-![Signup/Login, redirect user based on authorization status](images/security_signup_login.gif){width=75%}
-![Add tasks and events/Gen schedule](images/add_gen_schedule.gif){width=75%}
-![Delete tasks and events from the calendar](images/delete_task_event.gif){width=75%}
+![Signup/Login, redirect user based on authorization status](images/security_signup_login.gif)
+![Add tasks and events/Gen schedule](images/add_gen_schedule.gif)
+![Delete tasks and events from the calendar](images/delete_task_event.gif)

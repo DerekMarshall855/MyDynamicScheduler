@@ -84,7 +84,7 @@ In the Calendar page, users can add a task or event by filling out the form.
 
 When editing tasks and events, the chosen one will be retrieved from events/tasks collection and removed from the database.
 
-![Delete tasks and events from the calendar](images/delete_task_event.gif){width=75%}
+![Delete tasks and events from the calendar](images/delete_task_event.gif)
 
 ![Task existing in Collection Before Deletion](images/task_before_delete.png){width=600px}
 
@@ -96,7 +96,7 @@ Scheduling algorithm retrieves tasks from the database for the day and sorts the
 
 ![Schedule Generated](images/schedule_generated.png){width=600px}
 
-![Add tasks and events/Gen schedule](images/add_gen_schedule.gif){width=75%}
+![Add tasks and events/Gen schedule](images/add_gen_schedule.gif)
 
 
 
@@ -120,7 +120,7 @@ Scheduling algorithm to organize users' tasks for the day. The algorithm will ta
 Authentication ensures that if the user is not logged in they cannot access private routes (calendar, edit, logout, home, generate schedule) and if they are logged in they
 can no longer access public routes (login, signup). We use RouteRedirect to redirect the user.
 
-![Signup/Login, redirect user based on authorization status](images/security_signup_login.gif){width=75%}
+![Signup/Login, redirect user based on authorization status](images/security_signup_login.gif)
 
 We created a day checker helper function to tell if a day had any events/tasks
 
