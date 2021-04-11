@@ -1,6 +1,7 @@
 <h1 id="project-report">Project Report</h1>
 <p>Author: Rebecca Knezy, Derek Marshall, Joanne Bui</p>
 <p>Date: April 10, 2021</p>
+<p>Github Link: https://github.com/DerekMarshall855/MyDynamicScheduler</p>
 <h2 id="p2.1-client-side-component-ui">P2.1 Client Side Component &amp; UI</h2>
 <figure>
 <img src="images/login.png" alt="Login Page" width="600" /><figcaption>Login Page</figcaption>
@@ -24,6 +25,12 @@
 <img src="images/logout.png" alt="Option to Log Out" width="600" /><figcaption>Option to Log Out</figcaption>
 </figure>
 <h2 id="p2.2-server-side-cgi-components">P2.2 Server side CGI components</h2>
+<figure>
+<img src="images/db_connect.png" alt="DB Connection Server Side" style="width:75.0%" /><figcaption>DB Connection Server Side</figcaption>
+</figure>
+<figure>
+<img src="images/server_index.png" alt="Serverside main/Index" style="width:75.0%" /><figcaption>Serverside main/Index</figcaption>
+</figure>
 <figure>
 <img src="images/add_event_component.png" alt="Processes Event Form" width="600" /><figcaption>Processes Event Form</figcaption>
 </figure>
@@ -52,6 +59,7 @@
 <figure>
 <img src="images/mongodb.png" alt="Mongodb mydynamicscheduler Database" width="600" /><figcaption>Mongodb mydynamicscheduler Database</figcaption>
 </figure>
+<p>Additionally if the user does not have this db or collections created already, mongodb creates them automatically. Mongoose Schema (shown later) defines the exact layout for data in each collection</p>
 <h3 id="collections-in-mydynamicscheduler">Collections in mydynamicscheduler</h3>
 <figure>
 <img src="images/db_users.png" alt="Users Layout" width="600" /><figcaption>Users Layout</figcaption>
@@ -75,6 +83,9 @@
 <p>In the Calendar page, users can add a task or event by filling out the form.</p>
 <p>When editing tasks and events, the chosen one will be retrieved from events/tasks collection and removed from the database.</p>
 <figure>
+<img src="images/delete_task_event.gif" alt="Delete tasks and events from the calendar" /><figcaption>Delete tasks and events from the calendar</figcaption>
+</figure>
+<figure>
 <img src="images/task_before_delete.png" alt="Task existing in Collection Before Deletion" width="600" /><figcaption>Task existing in Collection Before Deletion</figcaption>
 </figure>
 <figure>
@@ -87,6 +98,9 @@
 <figure>
 <img src="images/schedule_generated.png" alt="Schedule Generated" width="600" /><figcaption>Schedule Generated</figcaption>
 </figure>
+<figure>
+<img src="images/add_gen_schedule.gif" alt="Add tasks and events/Gen schedule" /><figcaption>Add tasks and events/Gen schedule</figcaption>
+</figure>
 <h2 id="p2.5-problem-solving-algorithms">P2.5 Problem Solving Algorithms</h2>
 <p>During Signup, authentication is needed to make sure there will not be any accounts with the same username</p>
 <figure>
@@ -96,11 +110,25 @@
 <figure>
 <img src="images/login_auth.png" alt="Login Authentication" width="600" /><figcaption>Login Authentication</figcaption>
 </figure>
-<p>Scheduling algorithm to organize users’ tasks for the day. Refer to ScheduleGenerator.jsx. The algorithm will take in what time the user wants to start and stop doing work.</p>
-<p>Authentication ensures that if the user is not logged in they cannot access private routes (calendar, edit, logout, home, generate schedule) and if they are logged in they can no longer access public routes (login, signup). We use RouteRedirect to redirect the user.</p>
-<h2 id="p2.6-robustness-and-efficiency">P2.6 Robustness and Efficiency</h2>
-<p>We used Mongoose and Axios to access our database easily and make changes efficiently.</p>
+<p>Scheduling algorithm to organize users’ tasks for the day. The algorithm will take in what time the user wants to start and stop doing work.</p>
 <figure>
-<img src="images/event_api.png" alt="Event_api.js" width="600" /><figcaption>Event_api.js</figcaption>
+<img src="my-dynamic-scheduler/src/components/SchedulerGenerator" alt="Schedule Generator File" /><figcaption>Schedule Generator File</figcaption>
 </figure>
-<p>The user can check the “Remember Me” box so their account details will be saved for the day and they will not have to sign in repeatedly.</p>
+<p><img src="images/public_router" alt="Public Router" /> <img src="images/private_router" alt="Private Router" /> <img src="images/router" alt="Main Router" /></p>
+<p>Authentication ensures that if the user is not logged in they cannot access private routes (calendar, edit, logout, home, generate schedule) and if they are logged in they can no longer access public routes (login, signup). We use RouteRedirect to redirect the user.</p>
+<figure>
+<img src="images/security_signup_login.gif" alt="Signup/Login, redirect user based on authorization status" /><figcaption>Signup/Login, redirect user based on authorization status</figcaption>
+</figure>
+<p>We created a day checker helper function to tell if a day had any events/tasks</p>
+<figure>
+<img src="images/day_checker.png" alt="Day Checker" style="width:75.0%" /><figcaption>Day Checker</figcaption>
+</figure>
+<p>We used Mongoose and Axios to access our database easily and make changes efficiently. Below are images of the libraries in use (user example). <img src="images/user_schema.png" alt="User Schema" style="width:75.0%" /> <img src="images/user_router.png" alt="User Router" style="width:75.0%" /> <img src="images/user_controller.png" alt="User Controller" style="width:75.0%" /> <img src="images/user_axios.png" alt="User Axios" style="width:75.0%" /></p>
+<h2 id="p2.6-robustness-and-efficiency">P2.6 Robustness and Efficiency</h2>
+<p>Our code has been thoroughly tested and allows for quick functionality with no known errors.</p>
+<p>As seen in the above gifs the site is efficient, quickly updating the users information, rerouting and generating the schedule.</p>
+<p>Task, event and schedule information are also specific to a users account.</p>
+<p>We use a simple login controller util function to keep track of the users current state in local storage</p>
+<figure>
+<img src="images/login_controller.png" alt="Login Controller" style="width:75.0%" /><figcaption>Login Controller</figcaption>
+</figure>
