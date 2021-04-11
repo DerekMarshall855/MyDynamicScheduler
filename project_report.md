@@ -26,6 +26,13 @@ Date: April 10, 2021
 
 ## P2.2 Server side CGI components
 
+We used mongoose to define database schema, router and controller. Below is user example, but this was also done for tasks and events.
+![User Schema](images/user_schema.png){width=75%}
+
+![User Router](images/user_router.png){width=75%}
+
+![User Controller](images/user_controller.png){width=75%}
+
 ![DB Connection Server Side](images/db_connect.png){width=75%}
 
 ![Serverside main/Index](images/server_index.png){width=75%}
@@ -52,7 +59,7 @@ Date: April 10, 2021
 ![Mongodb mydynamicscheduler Database](images/mongodb.png){width=600px}
 
 Additionally if the user does not have this db or collections created already,
-mongodb creates them automatically. Mongoose Schema (shown later) defines the exact
+mongodb creates them automatically. Mongoose Schema (shown earlier) defines the exact
 layout for data in each collection
 
 ### Collections in mydynamicscheduler
@@ -67,7 +74,7 @@ To save events when users add an event through the form in "Calendar" page.
 
 ![Tasks Layout](images/db_tasks.png){width=600px}
 
-To save events when users add a task through the form in "Calendar" page.
+To save events when users add a task through the form in Calendar page.
 
 Accessed when creating the monthly calendars. If there is an event or task, it will be shown in the corresponding cell on the calendar. The schedule generator also retrieves tasks from the collection for certain days.
 
@@ -109,13 +116,9 @@ Login Authentication that was discussed in the section above.
 
 ![Login Authentication](images/login_auth.png){width=600px}
 
-Scheduling algorithm to organize users' tasks for the day. The algorithm will take in what time the user wants to start and stop doing work.
+Scheduling algorithm to organize users tasks for the day. The algorithm will take in what time the user wants to start and stop doing work.
 
-![Schedule Generator File](my-dynamic-scheduler/src/components/SchedulerGenerator)
-
-![Public Router](images/public_router)
-![Private Router](images/private_router)
-![Main Router](images/router)
+![Schedule Generator File](my-dynamic-scheduler\src\components\ScheduleGenerator.jsx){width=75% height=400px}
 
 Authentication ensures that if the user is not logged in they cannot access private routes (calendar, edit, logout, home, generate schedule) and if they are logged in they
 can no longer access public routes (login, signup). We use RouteRedirect to redirect the user.
@@ -125,12 +128,6 @@ can no longer access public routes (login, signup). We use RouteRedirect to redi
 We created a day checker helper function to tell if a day had any events/tasks
 
 ![Day Checker](images/day_checker.png){width=75%}
-
-We used Mongoose and Axios to access our database easily and make changes efficiently. Below are images of the libraries in use (user example).
-![User Schema](images/user_schema.png){width=75%}
-![User Router](images/user_router.png){width=75%}
-![User Controller](images/user_controller.png){width=75%}
-![User Axios](images/user_axios.png){width=75%}
 
 
 ## P2.6 Robustness and Efficiency
@@ -144,3 +141,12 @@ Task, event and schedule information are also specific to a users account.
 We use a simple login controller util function to keep track of the users current state in local storage
 
 ![Login Controller](images/login_controller.png){width=75%}
+
+We used Mongoose and Axios to access our database easily and make changes efficiently. Below are images of Axios in use. Mongoose shown in CGI section.
+![User Axios](images/user_axios.png){width=75%}
+
+Routers for robust and efficient site navigation.
+
+![Public Router](images/public_router.png)
+![Private Router](images/private_router.png)
+![Main Router](images/router.png)

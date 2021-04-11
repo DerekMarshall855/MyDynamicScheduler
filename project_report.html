@@ -25,6 +25,13 @@
 <img src="images/logout.png" alt="Option to Log Out" width="600" /><figcaption>Option to Log Out</figcaption>
 </figure>
 <h2 id="p2.2-server-side-cgi-components">P2.2 Server side CGI components</h2>
+<p>We used mongoose to define database schema, router and controller. Below is user example, but this was also done for tasks and events. <img src="images/user_schema.png" alt="User Schema" style="width:75.0%" /></p>
+<figure>
+<img src="images/user_router.png" alt="User Router" style="width:75.0%" /><figcaption>User Router</figcaption>
+</figure>
+<figure>
+<img src="images/user_controller.png" alt="User Controller" style="width:75.0%" /><figcaption>User Controller</figcaption>
+</figure>
 <figure>
 <img src="images/db_connect.png" alt="DB Connection Server Side" style="width:75.0%" /><figcaption>DB Connection Server Side</figcaption>
 </figure>
@@ -59,7 +66,7 @@
 <figure>
 <img src="images/mongodb.png" alt="Mongodb mydynamicscheduler Database" width="600" /><figcaption>Mongodb mydynamicscheduler Database</figcaption>
 </figure>
-<p>Additionally if the user does not have this db or collections created already, mongodb creates them automatically. Mongoose Schema (shown later) defines the exact layout for data in each collection</p>
+<p>Additionally if the user does not have this db or collections created already, mongodb creates them automatically. Mongoose Schema (shown earlier) defines the exact layout for data in each collection</p>
 <h3 id="collections-in-mydynamicscheduler">Collections in mydynamicscheduler</h3>
 <figure>
 <img src="images/db_users.png" alt="Users Layout" width="600" /><figcaption>Users Layout</figcaption>
@@ -72,7 +79,7 @@
 <figure>
 <img src="images/db_tasks.png" alt="Tasks Layout" width="600" /><figcaption>Tasks Layout</figcaption>
 </figure>
-<p>To save events when users add a task through the form in “Calendar” page.</p>
+<p>To save events when users add a task through the form in Calendar page.</p>
 <p>Accessed when creating the monthly calendars. If there is an event or task, it will be shown in the corresponding cell on the calendar. The schedule generator also retrieves tasks from the collection for certain days.</p>
 <h2 id="p2.4-new-features-and-tools">P2.4 New Features and Tools</h2>
 <p>When signing up, we use the SHA-1 hash function to encrypt passwords before saving them into the database.</p>
@@ -110,11 +117,10 @@
 <figure>
 <img src="images/login_auth.png" alt="Login Authentication" width="600" /><figcaption>Login Authentication</figcaption>
 </figure>
-<p>Scheduling algorithm to organize users’ tasks for the day. The algorithm will take in what time the user wants to start and stop doing work.</p>
+<p>Scheduling algorithm to organize users tasks for the day. The algorithm will take in what time the user wants to start and stop doing work.</p>
 <figure>
-<img src="my-dynamic-scheduler/src/components/SchedulerGenerator" alt="Schedule Generator File" /><figcaption>Schedule Generator File</figcaption>
+<embed src="my-dynamic-scheduler\src\components\ScheduleGenerator.jsx" style="width:75.0%" height="400" /><figcaption>Schedule Generator File</figcaption>
 </figure>
-<p><img src="images/public_router" alt="Public Router" /> <img src="images/private_router" alt="Private Router" /> <img src="images/router" alt="Main Router" /></p>
 <p>Authentication ensures that if the user is not logged in they cannot access private routes (calendar, edit, logout, home, generate schedule) and if they are logged in they can no longer access public routes (login, signup). We use RouteRedirect to redirect the user.</p>
 <figure>
 <img src="images/security_signup_login.gif" alt="Signup/Login, redirect user based on authorization status" /><figcaption>Signup/Login, redirect user based on authorization status</figcaption>
@@ -123,7 +129,6 @@
 <figure>
 <img src="images/day_checker.png" alt="Day Checker" style="width:75.0%" /><figcaption>Day Checker</figcaption>
 </figure>
-<p>We used Mongoose and Axios to access our database easily and make changes efficiently. Below are images of the libraries in use (user example). <img src="images/user_schema.png" alt="User Schema" style="width:75.0%" /> <img src="images/user_router.png" alt="User Router" style="width:75.0%" /> <img src="images/user_controller.png" alt="User Controller" style="width:75.0%" /> <img src="images/user_axios.png" alt="User Axios" style="width:75.0%" /></p>
 <h2 id="p2.6-robustness-and-efficiency">P2.6 Robustness and Efficiency</h2>
 <p>Our code has been thoroughly tested and allows for quick functionality with no known errors.</p>
 <p>As seen in the above gifs the site is efficient, quickly updating the users information, rerouting and generating the schedule.</p>
@@ -132,3 +137,6 @@
 <figure>
 <img src="images/login_controller.png" alt="Login Controller" style="width:75.0%" /><figcaption>Login Controller</figcaption>
 </figure>
+<p>We used Mongoose and Axios to access our database easily and make changes efficiently. Below are images of Axios in use. Mongoose shown in CGI section. <img src="images/user_axios.png" alt="User Axios" style="width:75.0%" /></p>
+<p>Routers for robust and efficient site navigation.</p>
+<p><img src="images/public_router.png" alt="Public Router" /> <img src="images/private_router.png" alt="Private Router" /> <img src="images/router.png" alt="Main Router" /></p>
